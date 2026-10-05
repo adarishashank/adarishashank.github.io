@@ -1,0 +1,99 @@
+[
+  {
+    "run_id": "#1",
+    "trigger": "push",
+    "commit": "583963a",
+    "started_at": "2026-10-05T05:25:53Z",
+    "status": "SUCCEEDED",
+    "duration_ms": 1685,
+    "tasks": [
+      {
+        "name": "bronze.ingest_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 1464,
+        "metrics": {
+          "repos": 32,
+          "events": 2,
+          "calendar_days": 366,
+          "calendar_source": "graphql",
+          "authenticated": true
+        },
+        "error": null
+      },
+      {
+        "name": "silver.merge_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 4,
+        "metrics": {
+          "contributions": {
+            "rows": 366,
+            "inserted": 366,
+            "updated": 0
+          },
+          "events": {
+            "rows": 2,
+            "inserted": 2
+          },
+          "repos": {
+            "rows": 32
+          },
+          "profile_daily": {
+            "rows": 1,
+            "inserted": 1,
+            "updated": 0
+          }
+        },
+        "error": null
+      },
+      {
+        "name": "silver.parse_posts",
+        "status": "SUCCEEDED",
+        "duration_ms": 27,
+        "metrics": {
+          "published": 2,
+          "draft": 0,
+          "scheduled": 0
+        },
+        "error": null
+      },
+      {
+        "name": "gold.aggregate",
+        "status": "SUCCEEDED",
+        "duration_ms": 16,
+        "metrics": {
+          "calendar_days": 373,
+          "events": 2,
+          "repos": 8,
+          "posts": 2
+        },
+        "error": null
+      },
+      {
+        "name": "quality.expectations",
+        "status": "SUCCEEDED",
+        "duration_ms": 1,
+        "metrics": {
+          "passed": 8,
+          "total": 8,
+          "warnings": 0
+        },
+        "error": null
+      },
+      {
+        "name": "serve.render_site",
+        "status": "SUCCEEDED",
+        "duration_ms": 171,
+        "metrics": {
+          "pages": 7,
+          "tables": 12
+        },
+        "error": null
+      }
+    ],
+    "dq": {
+      "passed": 8,
+      "total": 8,
+      "warnings": 0
+    }
+  }
+]

@@ -1,0 +1,141 @@
+{% macro icon(name, size=16, cls="") -%}
+<svg class="ico {{ cls }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- if name == "github" -%}
+<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>
+{%- elif name == "linkedin" -%}
+<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+{%- elif name == "mail" -%}
+<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+{%- elif name == "rss" -%}
+<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+{%- elif name == "sun" -%}
+<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+{%- elif name == "moon" -%}
+<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+{%- elif name == "menu" -%}
+<path d="M4 6h16M4 12h16M4 18h16"/>
+{%- elif name == "arrow" -%}
+<path d="M5 12h14M13 6l6 6-6 6"/>
+{%- elif name == "arrow-left" -%}
+<path d="M19 12H5M11 6l-6 6 6 6"/>
+{%- elif name == "arrow-down" -%}
+<path d="M12 5v14M6 13l6 6 6-6"/>
+{%- elif name == "chevron" -%}
+<path d="m9 6 6 6-6 6"/>
+{%- elif name == "plus" -%}
+<path d="M12 5v14M5 12h14"/>
+{%- elif name == "x" -%}
+<path d="M6 6l12 12M18 6 6 18"/>
+{%- elif name == "check-circle" -%}
+<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>
+{%- elif name == "alert" -%}
+<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/>
+{%- elif name == "x-circle" -%}
+<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>
+{%- elif name == "play" -%}
+<path d="M7 4v16l13-8L7 4z"/>
+{%- elif name == "external" -%}
+<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>
+{%- elif name == "download" -%}
+<path d="M12 4v12M6 10l6 6 6-6M4 20h16"/>
+{%- elif name == "briefcase" -%}
+<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>
+{%- elif name == "graduation" -%}
+<path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>
+{%- elif name == "award" -%}
+<circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/>
+{%- elif name == "zap" -%}
+<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+{%- elif name == "map-pin" -%}
+<path d="M12 22s7-7.1 7-12a7 7 0 0 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>
+{%- elif name in ICONS -%}
+{{ ICONS[name] | safe }}
+{%- endif -%}
+</svg>
+{%- endmacro %}
+
+{% macro post_row(p) -%}
+<li class="post-row" data-kind="{{ p.kind }}" data-tags="{{ p.tags | join(' ') }}" data-text="{{ (p.title ~ ' ' ~ p.summary ~ ' ' ~ (p.tags | join(' '))) | lower }}">
+  <a href="{{ url('blog/' ~ p.slug ~ '/') }}">
+    <span class="post-row__date">{{ p.date | date }}</span>
+    <span class="post-row__body">
+      <span class="post-row__title">{{ p.title }}</span>
+      <span class="post-row__summary">{{ p.summary }}</span>
+      <span class="post-row__meta"><span class="kind kind--{{ p.kind }}">{{ p.kind }}</span>{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}<span class="muted">· {{ p.reading_min }} min read</span></span>
+    </span>
+  </a>
+</li>
+{%- endmacro %}
+
+{# Generated cover art: a gradient, a decorative pattern and the title in big type. #}
+{% macro cover(id, lines, kind, tone, pattern, icon_name) -%}
+{% set g = {"green": ["#0f6b3a", "#1fb86a"], "amber": ["#8a4b00", "#ffb13d"], "blue": ["#123a8a", "#4f8cff"], "violet": ["#3b1a8a", "#9b6bff"], "teal": ["#0b5b55", "#2fd3bd"], "coral": ["#8a1f3a", "#ff6b7a"]}[tone] %}
+<svg class="cover tone-{{ tone }}" viewBox="0 0 640 400" role="img" aria-label="{{ lines | join(' ') }}">
+  <defs>
+    <linearGradient id="cv-grad-{{ id }}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{{ g[0] }}"/><stop offset="1" stop-color="{{ g[1] }}"/></linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#cv-grad-{{ id }})"/>
+  {% if pattern == "rings" %}
+    {% for r in [60, 110, 160, 210, 260, 310] %}<circle class="cv-deco" cx="560" cy="330" r="{{ r }}"/>{% endfor %}
+  {% elif pattern == "dots" %}
+    {% for y in range(0, 10) %}{% for x in range(0, 16) %}<circle class="cv-dots" cx="{{ 40 + x * 40 }}" cy="{{ 30 + y * 40 }}" r="{{ 1.2 + ((x + y) % 4) * 0.7 }}"/>{% endfor %}{% endfor %}
+  {% elif pattern == "waves" %}
+    {% for i in range(0, 7) %}<path class="cv-deco" d="M-20,{{ 240 + i * 26 }} C120,{{ 200 + i * 26 }} 220,{{ 290 + i * 26 }} 340,{{ 240 + i * 26 }} S560,{{ 200 + i * 26 }} 660,{{ 250 + i * 26 }}"/>{% endfor %}
+  {% else %}
+    {% for i in range(0, 12) %}<line class="cv-deco" x1="{{ 320 + i * 30 }}" y1="0" x2="{{ 200 + i * 30 }}" y2="400"/>{% endfor %}
+  {% endif %}
+  <text class="cv-kind" x="40" y="60">{{ kind | upper }}</text>
+  {% for l in lines %}<text class="cv-title" x="40" y="{{ 300 - (lines | length - 1 - loop.index0) * 50 }}">{{ l }}</text>{% endfor %}
+  <g transform="translate(560 40)" class="cv-icon">{{ ficon(icon_name, 0, 0, 40, "fi cv-icon") }}</g>
+</svg>
+{%- endmacro %}
+
+{% macro project_dialog(p) -%}
+<dialog class="dlg" id="dlg-{{ p.id }}" aria-labelledby="dlg-{{ p.id }}-t">
+  <div class="dlg__head">
+    <div>
+      <p class="eyebrow">{{ p.kind }} · {{ p.year }}</p>
+      <h3 id="dlg-{{ p.id }}-t">{{ p.name }}</h3>
+      <p class="dlg__meta"><span class="metric-chip tone-{{ p.tone }}">{{ p.status }}</span>{% if p.domain %}<span>{{ p.domain }}</span>{% endif %}</p>
+    </div>
+    <button type="button" class="icon-btn" data-close aria-label="Close">{{ icon("x", 18) }}</button>
+  </div>
+  <div class="dlg__body">
+    <div><h4>In plain words</h4><p style="font-size:1.08rem">{{ p.plain }}</p></div>
+    <div><h4>What it does</h4><ul class="features">{% for f in p.features %}<li>{{ icon("check-circle", 15) }}<span>{{ f }}</span></li>{% endfor %}</ul></div>
+    {% if p.episodes %}<div><h4>Some of the episodes</h4><div class="episodes">{% for e in p.episodes %}<span>{{ e }}</span>{% endfor %}<span>… and {{ 31 - (p.episodes | length) }} more</span></div></div>{% endif %}
+    <div><h4>The technical details</h4><p>{{ p.detail }}</p>{% if p.sample %}<pre class="sample mono" style="margin-top:14px">{{ p.sample }}</pre>{% endif %}</div>
+    <div><h4>Built with</h4><div class="chips">{% for t in p.tech %}<span class="chip">{{ t }}</span>{% endfor %}</div></div>
+    {% if p.links %}<div class="chips">{% for l in p.links %}<a class="more" href="{{ url(l.href) }}">{{ l.label }} {{ icon("arrow", 15) }}</a>{% endfor %}</div>{% endif %}
+  </div>
+</dialog>
+{%- endmacro %}
+
+{% macro role_dialog(j, figs) -%}
+<dialog class="dlg" id="dlg-{{ j.id }}" aria-labelledby="dlg-{{ j.id }}-t">
+  <div class="dlg__head">
+    <div>
+      <p class="eyebrow">{{ j.start | month }} – {{ j.end | month }} · {{ j.duration }}</p>
+      <h3 id="dlg-{{ j.id }}-t">{{ j.title }}</h3>
+      <p class="dlg__meta"><b>{{ j.role }}</b><span>·</span><span>{{ j.org }}</span>{% if j.client %}<span>·</span><span>client: <b>{{ j.client }}</b></span>{% endif %}</p>
+    </div>
+    <button type="button" class="icon-btn" data-close aria-label="Close">{{ icon("x", 18) }}</button>
+  </div>
+  <div class="dlg__body">
+    <div class="plain">
+      <div class="tone-coral"><h4>What they needed</h4><p>{{ j.plain.needed }}</p></div>
+      <div class="tone-blue"><h4>What I did</h4><p>{{ j.plain.did }}</p></div>
+      <div class="tone-green"><h4>What changed</h4><p>{{ j.plain.changed }}</p></div>
+    </div>
+    <figure class="fig">
+      <div class="fig__frame">{{ figs[j.figure] | safe }}</div>
+      <figcaption><b>How it fits together.</b> {{ j.figure_plain }}</figcaption>
+      {% if j.figure != "ops-loop" %}<div class="fig-legend"><span class="lg--source"><i></i>source systems</span><span class="lg--ingest"><i></i>collecting & scheduling</span><span class="lg--compute"><i></i>processing</span><span class="lg--govern"><i></i>governance</span><span class="lg--quality"><i></i>checks</span><span class="lg--serve"><i></i>where people use it</span></div>{% endif %}
+    </figure>
+    <div><h4>The technical details</h4>
+      <ol class="tasks">{% for h in j.highlights %}<li class="task"><div><p>{{ h.text }}</p>{% if h.metric %}<span class="metric-chip">{{ h.metric }}</span>{% endif %}</div></li>{% endfor %}</ol>
+    </div>
+    <div><h4>Tools and techniques</h4><div class="chips">{% for s in j.stack %}<span class="chip">{{ s }}</span>{% endfor %}</div></div>
+  </div>
+</dialog>
+{%- endmacro %}

@@ -1,0 +1,102 @@
+{% from "_macros.html" import icon %}
+<!doctype html>
+<html lang="{{ site.lang }}" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set _title = page_title | default(site.title) %}
+  {% set _desc = page_desc | default(site.description) %}
+  {% set _url = url(path | default(''), absolute=True) %}
+  <title>{{ _title }}</title>
+  <meta name="description" content="{{ _desc }}">
+  <link rel="canonical" href="{{ _url }}">
+  <meta name="author" content="{{ site.author.name }}">
+  <meta name="theme-color" content="#0a0a0e">
+  <meta property="og:site_name" content="{{ site.author.name }}">
+  <meta property="og:title" content="{{ _title }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:type" content="{{ og_type | default('website') }}">
+  <meta property="og:url" content="{{ _url }}">
+  <meta property="og:image" content="{{ avatar_abs }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="{{ url('static/favicon.svg') }}" type="image/svg+xml">
+  <link rel="icon" href="{{ url('static/brand/favicon-32.png') }}" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{ url('static/brand/apple-touch-icon.png') }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.author.name }} — blog" href="{{ url('feed.xml') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{{ url('static/css/site.css') }}?v={{ asset_v }}">
+  <script>
+    (function () { try { if (localStorage.getItem("theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {} })();
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body class="page-{{ page }}" data-root="{{ url('') }}">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar" id="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="{{ url('') }}" aria-label="{{ site.author.name }}, home">
+        <img class="brand__logo brand__logo--dark" src="{{ url('static/brand/adari-shashank-logo-dark.svg') }}" alt="Adari Shashank, Lead Data Engineer" width="294" height="64">
+        <img class="brand__logo brand__logo--light" src="{{ url('static/brand/adari-shashank-logo.svg') }}" alt="" width="294" height="64">
+      </a>
+      {% set home = url('') %}
+      {% set section = {"post": "blog"}.get(page, page) %}
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="{{ home }}#about" data-nav="about">About</a>
+        <a href="{{ home }}#skills" data-nav="skills">Skills</a>
+        <a href="{{ home }}#projects" data-nav="projects">Projects</a>
+        <a href="{{ home }}#experience" data-nav="experience">Experience</a>
+        <a href="{{ url('blog/') }}" {% if section == "blog" %}aria-current="page"{% endif %}>Blog</a>
+        <a class="nav__cta" href="{{ home }}#contact" data-nav="contact">Contact</a>
+      </nav>
+      <div class="topbar__tools">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch between dark and light" title="Switch theme">
+          <span class="theme-ico theme-ico--light">{{ icon("sun", 18) }}</span>
+          <span class="theme-ico theme-ico--dark">{{ icon("moon", 18) }}</span>
+        </button>
+        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">{{ icon("menu", 20) }}</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <a class="brand" href="{{ url('') }}" aria-label="{{ site.author.name }}, home">
+            <img class="brand__logo brand__logo--dark" src="{{ url('static/brand/adari-shashank-logo-dark.svg') }}" alt="Adari Shashank, Lead Data Engineer" width="294" height="64">
+            <img class="brand__logo brand__logo--light" src="{{ url('static/brand/adari-shashank-logo.svg') }}" alt="" width="294" height="64">
+          </a>
+          <p>{{ profile.tagline }} {{ profile.location }} · {{ site.timezone_label }}.</p>
+        </div>
+        <div class="foot__links">
+          <a href="{{ url('') }}#about">About</a>
+          <a href="{{ url('') }}#projects">Projects</a>
+          <a href="{{ url('') }}#experience">Experience</a>
+          <a href="{{ url('blog/') }}">Blog</a>
+          <a href="{{ url('activity/') }}">Activity</a>
+          <a href="{{ url('playground/') }}">SQL playground</a>
+          {% if site.resume_pdf %}<a href="{{ url(site.resume_pdf) }}" download>{{ icon("download", 15) }}CV</a>{% endif %}
+          <a href="{{ site.social.linkedin }}" rel="me noopener" target="_blank">{{ icon("linkedin", 15) }}LinkedIn</a>
+          <a href="{{ site.social.github }}" rel="me noopener" target="_blank">{{ icon("github", 15) }}GitHub</a>
+          <a href="{{ url('feed.xml') }}">{{ icon("rss", 15) }}RSS</a>
+        </div>
+      </div>
+      <div class="foot__bar">
+        <span>© {{ today[:4] }} {{ site.author.full_name }}</span>
+        <span>Designed and built with <a href="https://claude.com/claude-code" rel="noopener" target="_blank">Claude Code</a> · rebuilds itself nightly · last build <time datetime="{{ build_time }}" data-reltime>{{ build_time }}</time></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tip" id="tip" role="tooltip" hidden></div>
+  <script src="{{ url('static/js/site.js') }}?v={{ asset_v }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

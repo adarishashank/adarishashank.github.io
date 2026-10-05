@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, cover, project_dialog, role_dialog %}
+{% set path = "" %}
+{% set page_title = site.title %}
+{% set gh = github %}
+
+{% block head %}
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org", "@type": "Person",
+  "name": profile.name, "alternateName": site.author.name, "jobTitle": profile.headline,
+  "url": site.url, "image": avatar_abs, "email": "mailto:" ~ site.author.email,
+  "sameAs": [site.social.github, site.social.linkedin],
+  "worksFor": {"@type": "Organization", "name": current.org},
+  "alumniOf": {"@type": "CollegeOrUniversity", "name": "KL University"},
+  "knowsAbout": ["Azure Databricks", "Apache Spark", "Delta Lake", "Unity Catalog", "Microsoft Fabric", "Azure Data Explorer", "Data migration", "Real-time data"]
+} | tojson }}
+</script>
+{% endblock %}
+
+{% block content %}
+{# ================================================================ HERO #}
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow hero__hello">Hello, I am</p>
+        <h1>{{ site.author.name }}</h1>
+        <p class="hero__role">{{ profile.headline }}</p>
+        <p class="hero__pitch">{{ profile.tagline }} 5+ years on Microsoft Azure for PepsiCo, Mars and a Fortune 500 manufacturer.</p>
+        <div class="hero__cta">
+          {% if site.resume_pdf %}<a class="btn btn--primary" href="{{ url(site.resume_pdf) }}" download>Download CV {{ icon("download", 16) }}</a>{% endif %}
+          <a class="btn btn--icon" href="{{ site.social.linkedin }}" rel="me noopener" target="_blank" aria-label="LinkedIn">{{ icon("linkedin", 18) }}</a>
+          <a class="btn btn--icon" href="{{ site.social.github }}" rel="me noopener" target="_blank" aria-label="GitHub">{{ icon("github", 18) }}</a>
+          <a class="btn" href="#contact">Let's talk</a>
+        </div>
+        {% if site.gigs.available %}<p class="hero__status"><span class="pill"><span class="dot-live" aria-hidden="true"></span>{{ site.gigs.status_label }}</span></p>{% endif %}
+      </div>
+      <div class="hero__graph" id="graph" aria-label="An interactive map of what I work with. Drag the nodes; click a coloured one to jump to that section."></div>
+    </div>
+    <p class="hero__hint">drag the nodes · click a coloured one to jump there · <kbd>↓</kbd> scroll for more</p>
+
+    <ul class="stats" aria-label="Results in numbers">
+      {% for m in profile.metrics[:4] %}
+      <li class="stat"><b>{{ m.value }}<small>{{ m.unit }}</small></b><span>{{ m.label }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ================================================================ INTRO FILM #}
+<section class="sec sec--intro" id="intro">
+  <div class="wrap">
+    <header class="sec__head">
+      <div><p class="eyebrow">Thirty seconds</p><h2 class="h">What I do, in one take<span class="dot">.</span></h2><p>A short silent film: data leaving old systems for a lakehouse, events streaming live, and a table being checked and signed off.</p></div>
+    </header>
+    <div class="intro__frame" id="intro-frame">
+      <video id="intro-video" muted loop playsinline preload="metadata" poster="{{ url('static/video/poster.jpg') }}"
+             aria-label="Adari Shashank, Lead Data Engineer: migrations, real-time pipelines and table sign-off"
+             data-src-wide="{{ url('static/video/intro-1080p.mp4') }}" data-src-narrow="{{ url('static/video/intro-720p.mp4') }}">
+        <source src="{{ url('static/video/intro-1080p.mp4') }}" type="video/mp4">
+      </video>
+      <img class="intro__poster" src="{{ url('static/video/poster.jpg') }}" alt="Adari Shashank, Lead Data Engineer" width="1920" height="1080" loading="lazy">
+      <button type="button" class="intro__btn" id="intro-toggle" aria-label="Pause the film" aria-pressed="false">{{ icon("play", 16) }}<span>Pause</span></button>
+      <span class="intro__chip">30 s · silent · loops</span>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ ABOUT #}
+<section class="sec" id="about">
+  <div class="wrap">
+    <header class="sec__head"><h2 class="h">About Me<span class="dot">.</span></h2></header>
+    <div class="about">
+      <div>
+        <div class="about__text">
+          {% for para in profile.about.story %}<p>{{ para }}</p>{% endfor %}
+        </div>
+        <div class="principles">
+          {% for c in profile.about.principles %}
+          <div class="principle tone-{{ c.tone }}"><span class="ibadge">{{ icon(c.icon, 20) }}</span><h3>{{ c.title }}</h3><p>{{ c.text }}</p></div>
+          {% endfor %}
+        </div>
+      </div>
+      <aside class="about__aside">
+        <div class="about__id">
+          <img src="{{ url(site.author.avatar) }}" alt="Portrait of {{ site.author.name }}" width="64" height="64" loading="lazy">
+          <div><b>{{ site.author.name }}</b><span>{{ profile.headline }} · {{ profile.location }}</span></div>
+        </div>
+        <ul class="facts">
+          <li><span class="eyebrow">Now</span><b>{{ current.role }}, {{ current.org }}</b></li>
+          <li><span class="eyebrow">Experience</span><b>{{ profile.years_experience }} years on Azure data platforms</b></li>
+          <li><span class="eyebrow">Based in</span><b>{{ profile.location }}</b></li>
+          <li><span class="eyebrow">Education</span><b>{{ profile.education[0].degree }}, {{ profile.education[0].note }}</b></li>
+          <li><span class="eyebrow">Languages</span><b>{{ profile.about.languages | map(attribute="name") | join(", ") }}</b></li>
+          <li><span class="eyebrow">Open to</span><b>Lead / senior roles · small projects</b></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ SKILLS #}
+<section class="sec" id="skills">
+  <div class="wrap">
+    <header class="sec__head">
+      <div><h2 class="h">Skills<span class="dot">.</span></h2><p>The tools I reach for most, with the number of roles each one has carried, and the full list grouped underneath.</p></div>
+    </header>
+    <div class="tiles-grid">
+      {% for t in profile.skill_tiles %}
+      {% set n = skill_use.get(t.name, 0) %}<div class="tile-s tone-{{ t.tone }}"><span class="ibadge">{{ icon(t.icon, 20) }}</span><div><b>{{ n }} <small>{{ "role" if n == 1 else "roles" }}</small></b><span>{{ t.short or t.name }}</span></div></div>
+      {% endfor %}
+    </div>
+    <div class="skill-list">
+      {% for s in catalog %}
+      <div><h3>{{ s.label }}</h3><div class="chips">{% for i in s["items"] %}<span class="chip">{{ i.name }}</span>{% endfor %}</div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ================================================================ PROJECTS #}
+<section class="sec" id="projects">
+  <div class="wrap">
+    <header class="sec__head">
+      <div><h2 class="h">Projects<span class="dot">.</span></h2><p>Things I've built on my own time. Click one to read what it does in plain words, then the technical details.</p></div>
+    </header>
+    <div class="proj-grid">
+      {% for p in profile.projects %}
+      <button type="button" class="proj" data-dialog="dlg-{{ p.id }}">
+        <div class="proj__cover">{{ cover(p.id, p.lines, p.kind, p.tone, p.pattern, p.icon) }}</div>
+        <h3>{{ p.name }}</h3>
+        <p class="proj__meta"><b>Domain:</b> {{ p.domain }}</p>
+        <p class="proj__status">{{ p.status }}</p>
+        <span class="more">See the work {{ icon("arrow", 15) }}</span>
+      </button>
+      {% endfor %}
+    </div>
+    <div class="early-grid">
+      {% for e in profile.early_projects %}
+      <div class="early tone-{{ e.tone }}"><h3>{{ e.name }}</h3><p>{{ e.plain }}</p><span class="mono">University project · {{ e.year }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ================================================================ EXPERIENCE #}
+<section class="sec" id="experience">
+  <div class="wrap">
+    <header class="sec__head">
+      <div><h2 class="h">Experience<span class="dot">.</span></h2><p>What each company needed, what I did and what changed, with the architecture drawn out. Click a role to read the full story.</p></div>
+      <a class="btn btn--sm" href="{{ url(site.resume_pdf) if site.resume_pdf else '#contact' }}" {% if site.resume_pdf %}download{% endif %}>Download CV {{ icon("download", 15) }}</a>
+    </header>
+    <ol class="xp-list">
+      {% for j in jobs %}
+      <li class="xp" id="{{ j.id }}">
+        <button type="button" class="xp__btn" data-dialog="dlg-{{ j.id }}" aria-label="Open {{ j.title }}"><div class="xp__thumb" aria-hidden="true">{{ figs[j.figure] | safe }}</div></button>
+        <div>
+          <p class="xp__period"><span>{{ j.start | month }} – {{ j.end | month }}</span>{% if j.status == "RUNNING" %}<span class="badge badge--run"><span class="pulse" aria-hidden="true"></span>current</span>{% endif %}</p>
+          <h3>{{ j.title }}</h3>
+          <p class="xp__org"><b>{{ j.role }}</b> · {{ j.org }}{% if j.client %} · for <b>{{ j.client }}</b>{% endif %}</p>
+          <p class="xp__changed">{{ j.plain.changed }}</p>
+          <div class="xp__foot">
+            {% for m in metrics_by.get(j.id, []) %}<span class="metric-chip tone-{{ m.tone }}">{{ m.value }} {{ m.unit }}</span>{% endfor %}
+            <button type="button" class="xp__btn more" data-dialog="dlg-{{ j.id }}">Read the story {{ icon("arrow", 15) }}</button>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{# ================================================================ CERTIFICATES #}
+<section class="sec" id="certificates">
+  <div class="wrap">
+    <header class="sec__head"><div><h2 class="h">Awards &amp; Certificates<span class="dot">.</span></h2></div></header>
+    <div class="cert-grid">
+      {% for e in profile.education %}
+      <div class="cert tone-violet"><span class="ibadge">{{ icon("graduation", 20) }}</span><div><h3>{{ e.degree }}</h3><p>{{ e.school }}, {{ e.place }}</p><p class="mono">{{ e.years }} · {{ e.note }}</p></div></div>
+      {% endfor %}
+      {% for c in profile.certifications %}
+      <div class="cert tone-blue"><span class="ibadge">{{ icon("award", 20) }}</span><div><h3>{{ c.name }}</h3><p>{{ c.issuer }}</p><p class="mono">{{ c.valid }}</p></div></div>
+      {% endfor %}
+      {% for a in profile.awards %}
+      <div class="cert tone-{{ ['amber', 'teal', 'coral'][loop.index0 % 3] }}"><span class="ibadge">{{ icon("zap", 20) }}</span><div><h3>{{ a.title }}</h3><p>{{ a.detail }}</p><p class="mono">{{ a.org }}{% if a.year %} · {{ a.year }}{% endif %}</p></div></div>
+      {% endfor %}
+    </div>
+    <div class="teach-row">
+      <p class="eyebrow" style="margin-bottom:12px">Teaching and community</p>
+      <ul class="teach">
+        {% for t in profile.about.teaching %}<li><span class="when">{{ t.when }}</span><div><b>{{ t.title }}</b><p>{{ t.text }}</p></div></li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ SERVICES #}
+<section class="sec" id="services">
+  <div class="wrap">
+    <header class="sec__head">
+      <div><h2 class="h">Work With Me<span class="dot">.</span></h2><p>{{ site.gigs.capacity }} Each one has a clear scope and a fixed quote before anything starts.</p></div>
+    </header>
+    <ol class="process">
+      <li><h3>Describe the problem</h3><p>Use the form below. Plain language is fine.</p></li>
+      <li><h3>A short call</h3><p>Thirty minutes to agree scope, access and what "done" looks like.</p></li>
+      <li><h3>A fixed quote</h3><p>Fixed price for scoped work, hourly for open-ended help.</p></li>
+      <li><h3>Delivery and handover</h3><p>Working code, documentation and a walkthrough.</p></li>
+    </ol>
+    <div class="svc-list">
+      {% for s in profile.services %}
+      <div class="svc tone-{{ s.tone }}">
+        <span class="ibadge">{{ icon({"migration-assessment": "layers", "reconciliation": "shield", "pipeline-build": "wrench", "finops-audit": "chart", "streaming": "bolt", "ai-enablement": "cpu", "consult": "users"}[s.id], 20) }}</span>
+        <div><h3>{{ s.name }}</h3><p>{{ s.pitch }}</p><span class="mono">{{ s.format }} · {{ s.duration }}</span></div>
+        <button type="button" class="btn btn--sm" data-service="{{ s.id }}">Ask about this</button>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="faq">
+      {% for f in profile.faq %}<details><summary>{{ f.q }}{{ icon("plus", 18) }}</summary><p>{{ f.a }}</p></details>{% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ================================================================ CONTACT #}
+<section class="sec contact-sec" id="contact">
+  <img class="contact__mark contact__mark--dark" src="{{ url('static/brand/adari-shashank-mark-dark.svg') }}" alt="" aria-hidden="true" width="64" height="64">
+  <img class="contact__mark contact__mark--light" src="{{ url('static/brand/adari-shashank-mark.svg') }}" alt="" aria-hidden="true" width="64" height="64">
+  <div class="wrap">
+    <header class="sec__head"><div><h2 class="h">Contact<span class="dot">.</span></h2><p>For a role, a project, or a question. {{ site.gigs.response_time }}</p></div></header>
+    <div class="contact">
+      <div>
+        <p class="contact__big"><a href="#" data-email="{{ site.author.email | replace('@', ' [at] ') }}">{{ site.author.email | replace('@', '&#8203;@') | safe }}</a></p>
+        <ul class="ways">
+          <li><a href="{{ site.social.linkedin }}" rel="me noopener" target="_blank">{{ icon("linkedin", 18) }}LinkedIn</a></li>
+          <li><a href="{{ site.social.github }}" rel="me noopener" target="_blank">{{ icon("github", 18) }}GitHub</a></li>
+          {% if site.resume_pdf %}<li><a href="{{ url(site.resume_pdf) }}" download>{{ icon("download", 18) }}Download CV (PDF)</a></li>{% endif %}
+          <li><a>{{ icon("map-pin", 18) }}{{ profile.location }} · {{ site.timezone_label }}</a></li>
+        </ul>
+      </div>
+      <form class="form" id="contact-form" novalidate data-endpoint="{{ site.gigs.form_endpoint }}" data-email="{{ site.author.email }}">
+        <div class="field-row">
+          <label class="field"><span>Your name</span><input name="name" required autocomplete="name" maxlength="120"></label>
+          <label class="field"><span>Email</span><input name="email" type="email" required autocomplete="email" maxlength="160"></label>
+        </div>
+        <label class="field"><span>What's it about</span>
+          <select name="topic">
+            <option value="job">A job opportunity</option>
+            {% for s in profile.services %}<option value="{{ s.id }}">Project: {{ s.name }}</option>{% endfor %}
+            <option value="other">Something else</option>
+          </select>
+        </label>
+        <label class="field"><span>Message</span><textarea name="message" rows="6" required maxlength="4000" placeholder="What you have, what's going wrong or what you want to achieve."></textarea></label>
+        <label class="hp" aria-hidden="true">Leave this empty<input name="_gotcha" tabindex="-1" autocomplete="off"></label>
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Send {{ icon("arrow", 16) }}</button>
+          <span class="job__status" id="contact-status" role="status" aria-live="polite"></span>
+        </div>
+        <p class="form__fine">{% if site.gigs.form_endpoint %}Sent securely through a form service.{% else %}This opens your email app with the message filled in, so nothing is stored on this site.{% endif %}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ DIALOGS + DATA #}
+{% for p in profile.projects %}{{ project_dialog(p) }}{% endfor %}
+{% for j in jobs %}{{ role_dialog(j, figs) }}{% endfor %}
+<script type="application/json" id="graph-data">{{ {"domains": profile.graph.domains, "tools": profile.graph.tools, "avatar": url(site.author.avatar), "name": site.author.name} | tojson }}</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url('static/js/app.js') }}?v={{ asset_v }}" defer></script>
+{% endblock %}

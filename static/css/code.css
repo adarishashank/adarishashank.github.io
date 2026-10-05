@@ -1,0 +1,13 @@
+/* highlight.js tokens mapped onto the site palette (dark default, light opt-in) */
+:root { --hl-kw: #c4a1ff; --hl-str: #6ee7b7; --hl-num: #fcd34d; --hl-fn: #8fb2ff; --hl-com: #7d88b0; --hl-type: #fda4af; }
+:root[data-theme="light"] { --hl-kw: #7c3aed; --hl-str: #047857; --hl-num: #b45309; --hl-fn: #2347d6; --hl-com: #6b7699; --hl-type: #be123c; }
+
+.hljs-keyword, .hljs-selector-tag, .hljs-literal { color: var(--hl-kw); }
+.hljs-string, .hljs-regexp, .hljs-addition { color: var(--hl-str); }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: var(--hl-num); }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-built_in { color: var(--hl-fn); }
+.hljs-comment, .hljs-quote, .hljs-meta { color: var(--hl-com); font-style: italic; }
+.hljs-type, .hljs-class .hljs-title, .hljs-attr, .hljs-attribute, .hljs-variable, .hljs-params { color: var(--hl-type); }
+.hljs-deletion { color: var(--bad); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }

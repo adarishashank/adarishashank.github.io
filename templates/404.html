@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% set path = "404.html" %}
+{% set page_title = "Page not found — " ~ site.author.name %}
+
+{% block content %}
+<section class="section">
+  <div class="wrap wrap--narrow oops">
+    <p class="kicker" style="justify-content:center">404</p>
+    <h1>That page isn't here.</h1>
+    <p>The link may be old, or there's a typo in the address. These should get you back on track:</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="{{ url('') }}">{{ icon("arrow-left", 15) }}Home</a>
+      <a class="btn" href="{{ url('experience/') }}">Experience</a>
+      <a class="btn" href="{{ url('services/') }}">Services</a>
+      <a class="btn" href="{{ url('contact/') }}">Contact</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

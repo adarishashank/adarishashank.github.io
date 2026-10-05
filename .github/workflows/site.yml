@@ -1,0 +1,85 @@
+name: pipeline
+
+# Runs the site's medallion pipeline and deploys to GitHub Pages.
+#   push to main      -> you published a post or changed the site
+#   schedule (daily)  -> refresh GitHub telemetry + publish posts scheduled for today
+#   workflow_dispatch -> run it by hand from the Actions tab
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["README.md"]
+  schedule:
+    - cron: "35 18 * * *"   # 18:35 UTC = 00:05 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write   # push silver/gold tables to the `data` branch
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      LAKEHOUSE_DIR: ${{ github.workspace }}/.lakehouse
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Optional: a fine-grained PAT (read-only, no repo access needed) so private contribution
+      # counts are included when "Include private contributions" is on in your GitHub profile.
+      GH_STATS_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Attach lakehouse storage (data branch)
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          remote="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git clone --quiet --depth 1 --branch data "$remote" "$LAKEHOUSE_DIR"
+          else
+            mkdir -p "$LAKEHOUSE_DIR" && cd "$LAKEHOUSE_DIR"
+            git init --quiet -b data && git remote add origin "$remote"
+            printf '# lakehouse storage\n\nWritten by the pipeline workflow. Do not edit by hand.\n' > README.md
+          fi
+
+      - name: Run pipeline
+        run: python -m pipeline.run
+
+      - name: Commit silver + gold tables
+        if: always()
+        working-directory: ${{ env.LAKEHOUSE_DIR }}
+        run: |
+          printf 'bronze/\n' > .gitignore
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no data changes"
+          else
+            git commit --quiet -m "data: run ${GITHUB_RUN_NUMBER} (${GITHUB_EVENT_NAME})"
+            git push --quiet origin data
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

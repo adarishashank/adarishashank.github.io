@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% set path = "blog/" ~ post.slug ~ "/" %}
+{% set page_title = post.title ~ " — " ~ site.author.name %}
+{% set page_desc = post.summary %}
+{% set og_type = "article" %}
+{% set has_toc = post.kind == "article" and post.toc and (post.toc | length > 1 or post.toc[0].children) %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url('static/css/code.css') }}?v={{ asset_v }}">
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org", "@type": "BlogPosting", "headline": post.title,
+  "datePublished": post.date, "dateModified": post.updated or post.date, "description": post.summary,
+  "keywords": post.tags | join(", "), "wordCount": post.words,
+  "author": {"@type": "Person", "name": site.author.name, "url": site.url},
+  "mainEntityOfPage": url(path, absolute=True)
+} | tojson }}
+</script>
+{% endblock %}
+
+{% block content %}
+<article class="post{% if has_toc %} post--toc{% endif %}">
+  <header class="page-head">
+    <div class="wrap wrap--narrow">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url('blog/') }}">Blog</a><span>/</span><span>{{ post.kind }}</span></nav>
+      <h1>{{ post.title }}</h1>
+      <p class="post-head__meta">
+        <time datetime="{{ post.date }}">{{ post.date | date }}</time>
+        {% if post.updated %}<span>· updated <time datetime="{{ post.updated }}">{{ post.updated | date }}</time></span>{% endif %}
+        <span>· {{ post.reading_min }} min read</span>
+      </p>
+      {% if post.tags %}<p class="post-head__tags">{% for t in post.tags %}<a class="tag" href="{{ url('blog/') }}?tag={{ t | urlencode }}">#{{ t }}</a>{% endfor %}</p>{% endif %}
+    </div>
+  </header>
+  <div class="section">
+  <div class="wrap post__grid">
+    {% if has_toc %}
+    <aside class="post__toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        {% for h in post.toc %}
+        <li><a href="#{{ h.id }}">{{ h.name | safe }}</a>{% if h.children %}<ol>{% for c in h.children %}<li><a href="#{{ c.id }}">{{ c.name | safe }}</a></li>{% endfor %}</ol>{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </aside>
+    {% endif %}
+    <div class="prose" id="prose">{{ post.html | safe }}</div>
+    <footer class="post__foot">
+      <div class="cta card">
+        <div><p class="cta__title">Dealing with something like this?</p><p>I help companies move, check and use their data. A short message is all it takes to start.</p></div>
+        <a class="btn btn--primary" href="{{ url('contact/') }}">{{ icon("mail", 15) }}Contact me</a>
+      </div>
+      <p class="share">Share: <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url(path, absolute=True) | urlencode }}" rel="noopener" target="_blank">LinkedIn</a> · <button type="button" class="link-btn" data-copy="{{ url(path, absolute=True) }}">copy link</button></p>
+      <nav class="pager" aria-label="More posts">
+        {% if prev %}<a class="pager__link card" href="{{ url('blog/' ~ prev.slug ~ '/') }}"><span class="mono">← older</span><span>{{ prev.title }}</span></a>{% else %}<span></span>{% endif %}
+        {% if next %}<a class="pager__link pager__link--next card" href="{{ url('blog/' ~ next.slug ~ '/') }}"><span class="mono">newer →</span><span>{{ next.title }}</span></a>{% endif %}
+      </nav>
+    </footer>
+  </div>
+  </div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+<script src="{{ url('static/js/blog.js') }}?v={{ asset_v }}" defer></script>
+{% endblock %}

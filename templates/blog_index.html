@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, post_row %}
+{% set path = "blog/" %}
+{% set page_title = "Blog — " ~ site.author.name %}
+{% set page_desc = "Notes and articles on data engineering: migrations, data quality, Azure Databricks, and building with AI tools, written to be readable by non-specialists too." %}
+
+{% block content %}
+<header class="page-head">
+  <div class="wrap page-head__row">
+    <div>
+      <p class="kicker">Blog</p>
+      <h1>Notes from the work</h1>
+      <p class="lede">Short <b>notes</b> on something I learned that day and longer <b>articles</b> that explain a topic properly. I try to write them so a non-specialist can follow along.</p>
+    </div>
+    <a class="btn" href="{{ url('feed.xml') }}">{{ icon("rss", 15) }}Subscribe (RSS)</a>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    {% if posts %}
+    <div class="filters" role="search">
+      <div class="seg" role="group" aria-label="Post type">
+        <button type="button" class="seg__btn" data-kind="all" aria-pressed="true">All</button>
+        <button type="button" class="seg__btn" data-kind="article" aria-pressed="false">Articles</button>
+        <button type="button" class="seg__btn" data-kind="note" aria-pressed="false">Notes</button>
+      </div>
+      <label class="search search--grow">{{ icon("search", 15) }}<input type="search" id="post-search" placeholder="Search posts…" aria-label="Search posts" autocomplete="off"></label>
+    </div>
+    {% if all_tags %}
+    <div class="chips tag-filter" role="group" aria-label="Filter by topic">
+      {% for t in all_tags %}<button type="button" class="chip" data-tag="{{ t }}" aria-pressed="false">#{{ t }}</button>{% endfor %}
+    </div>
+    {% endif %}
+    <ol class="post-list" id="post-list">{% for p in posts %}{{ post_row(p) }}{% endfor %}</ol>
+    <p class="empty muted" id="post-empty" hidden>No posts match that filter.</p>
+    {% else %}
+    <p class="card empty muted">No posts yet. The first one is on its way.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url('static/js/blog.js') }}?v={{ asset_v }}" defer></script>
+{% endblock %}

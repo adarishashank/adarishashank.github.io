@@ -1,0 +1,16 @@
+# build output
+_site/
+
+# local lakehouse (CI keeps the real one on the `data` branch)
+data/
+.lakehouse/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# os / editors
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,1182 @@
+{
+  "name": "Adari Durga Sai Shashank",
+  "display_name": "Shashank Adari",
+  "headline": "Lead Data Engineer",
+  "tagline": "I move company data to modern cloud platforms, and make sure nothing gets lost on the way.",
+  "location": "Hyderabad, India",
+  "hometown": "Siddipet, Telangana",
+  "years_experience": "5+",
+  "hero": {
+    "greeting": "Hi, I'm Shashank.",
+    "title": "I help companies move their data to the cloud and trust what they see.",
+    "lead": "Lead Data Engineer with 5+ years on Microsoft Azure. Right now I'm leading PepsiCo's data platform migration at Cliff Systems. Before that, five years at Accenture building real-time factory data systems and large migrations for Mars and a Fortune 500 manufacturer.",
+    "facts": [
+      "5+ years on Microsoft Azure",
+      "Based in Hyderabad, work worldwide",
+      "Open to roles and small projects"
+    ]
+  },
+  "summary": "I design, build and run data platforms on Microsoft Azure: moving data out of ageing systems into governed lakehouses, streaming live telemetry into dashboards, and proving the numbers are right before anyone relies on them.",
+  "now": "Technical Lead, Data Engineering at Cliff Systems LLP, leading PepsiCo's Hive Metastore to Unity Catalog migration and Teradata to Azure Databricks migration waves.",
+  "plain_pillars": [
+    {
+      "title": "Move data to a modern platform",
+      "icon": "layers",
+      "tone": "blue",
+      "plain": "Companies keep years of data in old systems that are expensive and slow. I move it to Azure Databricks safely, in waves, and prove every table matches the original before anyone relies on it.",
+      "link": "experience/#td-migration",
+      "link_text": "How I moved four regions off Teradata"
+    },
+    {
+      "title": "Make live data useful",
+      "icon": "bolt",
+      "tone": "teal",
+      "plain": "Factory sensors, apps and devices produce data every second. I build the pipes that turn it into live dashboards and alerts, so people can act now instead of reading about it tomorrow.",
+      "link": "experience/#digital-twin",
+      "link_text": "The factory Digital Twin at Mars"
+    },
+    {
+      "title": "Put AI to work, safely",
+      "icon": "cpu",
+      "tone": "violet",
+      "plain": "I help engineering teams use AI tools for real work, with guardrails: the AI gets no access to production data, and a person checks everything before it ships.",
+      "link": "experience/#pepsico",
+      "link_text": "AI rollout at PepsiCo"
+    }
+  ],
+  "metrics": [
+    {
+      "value": "51B",
+      "unit": "rows",
+      "label": "the largest table I've built a loader for; it runs inside a 1-hour window",
+      "source": "pepsico",
+      "tone": "blue"
+    },
+    {
+      "value": "4",
+      "unit": "regions",
+      "label": "moved from Teradata to Azure Databricks for a Fortune 500 manufacturer",
+      "source": "td-migration",
+      "tone": "violet"
+    },
+    {
+      "value": "35%",
+      "unit": "less waste",
+      "label": "at Mars factories, from the Digital Twin program my pipelines fed",
+      "source": "digital-twin",
+      "tone": "teal"
+    },
+    {
+      "value": "20%",
+      "unit": "lower cloud bill",
+      "label": "and 30% faster systems, from a cost initiative I led at Mars",
+      "source": "digital-twin",
+      "tone": "amber"
+    },
+    {
+      "value": "700",
+      "unit": "issues fixed on time",
+      "label": "with the root cause written up each time so it didn't repeat",
+      "source": "paas-support",
+      "tone": "coral"
+    },
+    {
+      "value": "739→256",
+      "unit": "settings",
+      "label": "a blocked deployment pipeline brought back under Azure's limit",
+      "source": "pepsico",
+      "tone": "green"
+    }
+  ],
+  "stages": [
+    {
+      "id": "source",
+      "label": "Sources",
+      "hint": "origins"
+    },
+    {
+      "id": "bronze",
+      "label": "Bronze",
+      "hint": "raw"
+    },
+    {
+      "id": "silver",
+      "label": "Silver",
+      "hint": "refined"
+    },
+    {
+      "id": "gold",
+      "label": "Gold",
+      "hint": "curated"
+    },
+    {
+      "id": "serving",
+      "label": "Serving",
+      "hint": "live"
+    }
+  ],
+  "experience": [
+    {
+      "id": "pepsico",
+      "label": "Lakehouse modernization",
+      "short": "PepsiCo",
+      "stage": "serving",
+      "kind": "job",
+      "status": "RUNNING",
+      "org": "Cliff Systems LLP",
+      "role": "Technical Lead, Data Engineering",
+      "client": "PepsiCo",
+      "project": "Azure data platform modernization across Europe, APAC and Africa",
+      "location": "Hyderabad, India",
+      "start": "2026-08",
+      "end": null,
+      "title": "Leading PepsiCo's move to one modern, governed data platform",
+      "plain": {
+        "needed": "PepsiCo's European sales-analytics platform, its Asia-Pacific supply-chain data and its South African finance pipelines all sat on older systems. They needed to move to one modern, governed platform without anyone losing trust in the numbers.",
+        "did": "I lead the move. I set the standards the team builds to, run the release process, and sign every table off with proof that the new copy matches the old one. I also built a loader that publishes a 51-billion-row table to downstream users inside a one-hour window, and unblocked a stuck deployment pipeline by bringing 739 settings back under Azure's limit of 256.",
+        "changed": "Three migrations now run under one standard, with audit-ready evidence for every table, and the team uses AI-assisted engineering with guardrails I put in place."
+      },
+      "summary": "Lead the Hive Metastore → Unity Catalog migration of a pan-European retail-execution analytics platform, and deliver the APAC supply-chain Teradata → Azure Databricks migration and a South Africa topline and COGS pipeline migration to Unity Catalog. I own architecture, development standards, CI/CD and validation through production sign-off.",
+      "highlights": [
+        {
+          "text": "Designed and built a config-driven Unity Catalog → ADLS Delta sync framework (Databricks notebook, JSON table registry, ADF orchestrator) with full-refresh and MERGE modes, parallel fan-out, run-overlap protection, dry-run mode and tiered verification.",
+          "metric": "51B rows · 1h window"
+        },
+        {
+          "text": "Built the migration sign-off framework: schema comparison, row counts and SHA-256 multiset row-hash reconciliation across Databricks workspaces with variance-threshold gating, producing audit-ready evidence for production approval.",
+          "metric": "audit-ready"
+        },
+        {
+          "text": "Converted complex nested Teradata views and staging tables to Spark SQL and PySpark, re-pointing acquisition-layer views to enterprise foundation master data through hash-based join keys, with production grant standards and automated QA checks."
+        },
+        {
+          "text": "Defined the Unity Catalog and Synapse migration playbook: governed external-location access, clone-versus-CTAS copy strategy, Delta transaction-log recovery from checkpoints, and T-SQL → Spark SQL semantic-parity rules."
+        },
+        {
+          "text": "Leading the split of one Azure Data Factory into two regional factories (UK and US); re-engineered ARM template parameterization to unblock CI/CD and drive PreProd/Prod configuration parity.",
+          "metric": "739 → ≤256 params"
+        },
+        {
+          "text": "Built decommissioning and FinOps tooling: a schema-usage audit over Databricks system tables plus workspace, job, pipeline and dashboard scans; a cross-repository ADLS dependency inventory; and Azure run-cost models from rate-card pricing and pipeline telemetry."
+        },
+        {
+          "text": "Led AI adoption for project teams: evaluated frontier LLMs, then rolled out LLM-assisted code generation, review, audits and documentation with guardrails (restricted Databricks data access, verification rules, dry-run defaults, human review)."
+        }
+      ],
+      "stack": [
+        "Azure Databricks",
+        "Unity Catalog",
+        "Hive Metastore",
+        "Teradata",
+        "Azure Synapse Analytics",
+        "Delta Lake",
+        "ADLS Gen2",
+        "PySpark",
+        "Spark SQL",
+        "T-SQL",
+        "Python",
+        "Azure Data Factory",
+        "ARM templates",
+        "Azure DevOps",
+        "Databricks system tables",
+        "Data reconciliation",
+        "Unity Catalog governance",
+        "Platform migration",
+        "Incremental MERGE loads",
+        "Hash-based surrogate keys",
+        "Power BI",
+        "LLM evaluation",
+        "LLM agents",
+        "Model Context Protocol (MCP)",
+        "Agentic workflows",
+        "Prompt engineering",
+        "AI guardrails",
+        "AI-assisted code generation"
+      ],
+      "figure": "arch-pepsico",
+      "figure_plain": "Data from three older systems (left) lands in the governed platform, a sync publishes it to downstream users (right), and every table passes the sign-off checks at the bottom before it counts.",
+      "case": {
+        "figure": "arch-pepsico"
+      }
+    },
+    {
+      "id": "td-migration",
+      "label": "Teradata → Databricks",
+      "short": "TD → Databricks",
+      "stage": "gold",
+      "kind": "job",
+      "status": "SUCCEEDED",
+      "org": "Accenture",
+      "role": "Senior Analyst, Full-Stack Engineering",
+      "client": "Fortune 500 global manufacturer",
+      "project": "Teradata → Azure Databricks migration",
+      "location": "Hyderabad, India",
+      "start": "2025-03",
+      "end": "2026-07",
+      "title": "Moving a global manufacturer off Teradata, in four regions",
+      "plain": {
+        "needed": "A Fortune 500 manufacturer wanted to retire its Teradata warehouse, which ran on thousands of lines of old scripts, and move everything to Azure Databricks across Europe, Asia-Pacific, Africa/Middle East and North America.",
+        "did": "I rebuilt the data pipelines on the new platform, replaced the old script-based scheduling with modern orchestration, hardened the release process so deployments stopped failing on timing issues, and owned the proof that the new data matched the old at go-live.",
+        "changed": "Four regions went live on the new platform, with a written root-cause for every mismatch found on the way, so the same mistakes weren't repeated in the next region."
+      },
+      "summary": "Migrated Teradata workloads to Azure Databricks and Unity Catalog across four regions, owning source-to-target data parity through go-live.",
+      "highlights": [
+        {
+          "text": "Analyzed BTEQ and KSH jobs and Teradata DDL, implemented Delta models in a layered medallion architecture, and built PySpark and Spark SQL pipelines with hash-based surrogate keys and error-quarantine tables.",
+          "metric": "4 regions"
+        },
+        {
+          "text": "Built PySpark MERGE pipelines for SAP BW-origin tables and JDA / Blue Yonder supply-chain feeds, with automated staging validation and per-step freshness and volume audits."
+        },
+        {
+          "text": "Replaced KSH and BTEQ orchestrators and trigger-file generation with Databricks Workflows backed by Delta control tables, plus ADF and Event Grid gatekeeper pipelines that confirm every load in a dependency set through the ADF REST API before publishing completion events."
+        },
+        {
+          "text": "Hardened ADF CI/CD release automation with PowerShell retry logic (exponential backoff, pre-flight gates) for control-plane eventual consistency, and root-caused cross-environment drift in trigger and Event Grid configuration."
+        },
+        {
+          "text": "Resolved count and type discrepancies from Teradata-to-Spark semantic differences (case sensitivity, numeric overflow) and Delta write concurrency, with documented root-cause analysis."
+        }
+      ],
+      "stack": [
+        "Teradata",
+        "Azure Databricks",
+        "Unity Catalog",
+        "Delta Lake",
+        "PySpark",
+        "Spark SQL",
+        "Python",
+        "Medallion architecture",
+        "Dimensional modelling",
+        "Hash-based surrogate keys",
+        "Incremental MERGE loads",
+        "Databricks Workflows",
+        "Azure Data Factory",
+        "Azure Event Grid",
+        "PowerShell",
+        "Azure DevOps",
+        "ARM templates",
+        "Data reconciliation",
+        "Platform migration"
+      ],
+      "figure": "arch-teradata",
+      "figure_plain": "Three kinds of source data (left) flow through raw, cleaned and curated layers on Databricks (middle). Bad rows are set aside instead of lost, and a gatekeeper (right) confirms every load finished before telling downstream systems.",
+      "case": {
+        "figure": "arch-teradata"
+      }
+    },
+    {
+      "id": "digital-twin",
+      "label": "Real-time IoT Digital Twin",
+      "short": "IoT Digital Twin",
+      "stage": "silver",
+      "kind": "job",
+      "status": "SUCCEEDED",
+      "org": "Accenture",
+      "role": "Senior Analyst, Full-Stack Engineering",
+      "client": "Mars Global",
+      "project": "Digital Twin for Manufacturing — real-time IoT data platform",
+      "location": "Hyderabad, India",
+      "start": "2022-09",
+      "end": "2025-02",
+      "title": "Letting Mars factory teams see their production lines live",
+      "plain": {
+        "needed": "Mars wanted factory teams to see what their production lines were doing right now, not in yesterday's report, and to be alerted the moment something drifted.",
+        "did": "I built the pipes that carry sensor readings from the plant floor into a live database and dashboards within seconds, set up automated alerts, and built the screens production staff used every day. I also led a clean-up of the cloud estate.",
+        "changed": "The Digital Twin program cut material wastage by 35%. The cost initiative cut the Azure bill by 20% and made the system 30% faster."
+      },
+      "summary": "Built the real-time telemetry backbone of a manufacturing Digital Twin: IoT Hub, Event Hubs and Stream Analytics into Azure Data Explorer (Kusto) and SQL, powering live monitoring for production users.",
+      "highlights": [
+        {
+          "text": "Built real-time telemetry pipelines on Azure IoT Hub, Event Hubs and Stream Analytics into Azure Data Explorer (Kusto) and SQL databases, powering a real-time manufacturing monitoring platform.",
+          "metric": "−35% material wastage"
+        },
+        {
+          "text": "Developed batch ETL in Azure Data Factory and automated alerting in Azure Logic Apps; built Angular dashboards and Power Apps front-ends for production users."
+        },
+        {
+          "text": "Led an Azure PaaS optimization initiative; automated PaaS deployments with Python and monitored the estate with Grafana and Datadog.",
+          "metric": "−20% cost · +30% perf"
+        }
+      ],
+      "stack": [
+        "Azure IoT Hub",
+        "Azure Event Hubs",
+        "Azure Stream Analytics",
+        "Azure Data Explorer (Kusto)",
+        "KQL",
+        "Azure Data Factory",
+        "Azure Logic Apps",
+        "Python",
+        "JavaScript",
+        "Angular",
+        "Power Apps",
+        "Grafana",
+        "Datadog"
+      ],
+      "figure": "arch-twin",
+      "figure_plain": "Sensor readings travel left to right: collected from devices, buffered, processed in windows of a few seconds, stored, and shown on live dashboards, with alerts fired automatically.",
+      "case": {
+        "figure": "arch-twin"
+      }
+    },
+    {
+      "id": "paas-support",
+      "label": "Azure PaaS engineering",
+      "short": "PaaS support",
+      "stage": "bronze",
+      "kind": "job",
+      "status": "SUCCEEDED",
+      "org": "Accenture",
+      "role": "Full-Stack Engineering (platform support)",
+      "client": "Mars Global",
+      "project": "Azure PaaS platform engineering and support",
+      "location": "Hyderabad, India",
+      "start": "2021-08",
+      "end": "2022-08",
+      "title": "Keeping an enterprise cloud estate running",
+      "plain": {
+        "needed": "An enterprise cloud estate with a steady stream of incidents and requests, each with a deadline, and business teams who needed changes delivered as well as problems fixed.",
+        "did": "I resolved 700 incidents and requests within their deadlines, wrote up the root cause each time so the same problem didn't come back, and turned business requests into delivered changes.",
+        "changed": "Fewer repeat incidents and a direct line between business teams and engineering. It's also where I learned how production systems actually fail, which shapes how I build them now."
+      },
+      "summary": "Kept an enterprise Azure PaaS estate healthy, and learned how production platforms actually fail.",
+      "highlights": [
+        {
+          "text": "Resolved 700 incidents and service requests within SLA, documenting root cause in ServiceNow to prevent recurrence.",
+          "metric": "700 within SLA"
+        },
+        {
+          "text": "Bridged business stakeholders and the development team, turning requirements into delivered changes; contributed to code reviews and knowledge-sharing sessions."
+        }
+      ],
+      "stack": [
+        "ServiceNow",
+        "Incident & problem management"
+      ],
+      "figure": "ops-loop",
+      "figure_plain": "Every issue went round the same loop: spot it, decide how urgent it is, fix it on time, write down why it happened, and stop it happening again.",
+      "case": {
+        "figure": "ops-loop"
+      }
+    },
+    {
+      "id": "az104",
+      "label": "AZ-104 certified",
+      "short": "AZ-104",
+      "stage": "bronze",
+      "kind": "cert",
+      "status": "SUCCEEDED",
+      "org": "Microsoft",
+      "role": "Azure Administrator Associate (AZ-104)",
+      "client": null,
+      "project": "Microsoft Certified",
+      "location": null,
+      "start": "2023-01",
+      "end": "2025-12",
+      "period_label": "2023 – 2025",
+      "summary": "Microsoft Certified: Azure Administrator Associate.",
+      "highlights": [],
+      "stack": []
+    },
+    {
+      "id": "kl-university",
+      "label": "B.Tech, CSE",
+      "short": "B.Tech CSE",
+      "stage": "source",
+      "kind": "education",
+      "status": "SUCCEEDED",
+      "org": "KL University",
+      "role": "B.Tech, Computer Science & Engineering",
+      "client": null,
+      "project": "Koneru Lakshmaiah Education Foundation, Guntur",
+      "location": "Guntur, India",
+      "start": "2017-06",
+      "end": "2021-05",
+      "period_label": "2017 – 2021",
+      "summary": "Bachelor of Technology in Computer Science & Engineering, CGPA 8.55.",
+      "highlights": [],
+      "stack": []
+    },
+    {
+      "id": "stanford-uif",
+      "label": "Innovation Fellow",
+      "short": "UIF 2020",
+      "stage": "source",
+      "kind": "award",
+      "status": "SUCCEEDED",
+      "org": "Stanford d.school",
+      "role": "University Innovation Fellow",
+      "client": null,
+      "project": "Hasso Plattner Institute of Design · 2020 cohort",
+      "location": null,
+      "start": "2020-01",
+      "end": "2020-12",
+      "period_label": "2020",
+      "summary": "University Innovation Fellow, 2020 cohort.",
+      "highlights": [
+        {
+          "text": "Ran design-thinking workshops for students; two student start-ups came out of them. Introduced a Week of Welcome for first-year students and a peer-learning program."
+        }
+      ],
+      "stack": []
+    }
+  ],
+  "edges": [
+    [
+      "kl-university",
+      "paas-support"
+    ],
+    [
+      "stanford-uif",
+      "paas-support"
+    ],
+    [
+      "paas-support",
+      "digital-twin"
+    ],
+    [
+      "az104",
+      "digital-twin"
+    ],
+    [
+      "digital-twin",
+      "td-migration"
+    ],
+    [
+      "td-migration",
+      "pepsico"
+    ]
+  ],
+  "projects": [
+    {
+      "id": "lakehouse-signoff",
+      "name": "lakehouse-signoff",
+      "kind": "Open-source tool",
+      "tone": "green",
+      "icon": "shield",
+      "year": "2026",
+      "status": "Code complete · GitHub release coming",
+      "plain": "A small tool that proves a copied table is identical to the original. When a company moves data between systems, \"the row counts match\" isn't enough: two tables can have the same number of rows and still disagree. This tool fingerprints every row on both sides and produces a report an auditor can file.",
+      "detail": "Compares a legacy table with its lakehouse copy on three checks: schema comparison, row counts, and a SHA-256 row-hash reconciliation compared as a multiset, with variance thresholds. A Spark engine runs on Databricks; a pure-Python engine applies the same rules to small extracts and runs the test suite, and a parity suite proves both produce byte-identical hashes.",
+      "features": [
+        "Catches a lost row and a duplicated row even when the counts still match",
+        "Ignores harmless differences: NULL vs empty, CHAR padding, letter case, INT vs DECIMAL vs DOUBLE",
+        "An order-independent fingerprint per table, so two teams can compare one value without sharing data",
+        "Markdown and JSON reports; a Databricks notebook that files the evidence and stops the pipeline on failure"
+      ],
+      "tech": [
+        "Python",
+        "PySpark",
+        "Databricks",
+        "Delta Lake",
+        "unittest"
+      ],
+      "sample": "## fact_sales: NOT SIGNED OFF\n\n| Check | Result | Detail |\n|---|---|---|\n| Schema comparison | PASS | extra in target (allowed): load_ts |\n| Row counts | PASS | source 5, target 5 (0.0000% variance) |\n| SHA-256 row hashes | FAIL | 2 source rows without an identical target row (40.0000% variance) |",
+      "links": [],
+      "domain": "Data quality · migrations",
+      "lines": [
+        "lakehouse-",
+        "signoff"
+      ],
+      "pattern": "rings"
+    },
+    {
+      "id": "pathfinder",
+      "name": "Pathfinder Stories",
+      "kind": "Learning platform",
+      "tone": "amber",
+      "icon": "book",
+      "year": "2025 – 2026",
+      "status": "In testing before launch",
+      "plain": "A website that teaches the fundamentals of programming (data structures and algorithms) through 31 short, interactive 3D stories set in everyday Indian life: a lost page at a wedding hall, a tiffin ladder, a cricket scorer, the last bus home. Each story shows a real problem, a first attempt that fails, the right approach step by step, the traps, and practice questions.",
+      "detail": "Alongside the episodes: two study guides (DSA and Data), 20 SQL exercises on a deliberately messy dataset, and a \"Pattern Gym\" of 45 interview-style problems. Students sign in, their progress follows them across devices, members-only pages are encrypted per visit and watermarked, and each season ends with a certificate. A narrator reads every chapter aloud using the device's own voice. Hosted on Cloudflare Pages with Supabase, built by a Python script that checks everything agrees before it publishes.",
+      "features": [
+        "31 interactive 3D episodes, the first two free",
+        "Sign-in with one active device per student; progress saved to their account",
+        "Members-only pages served encrypted with a fresh key each time, plus a visible watermark",
+        "A readiness check, a mistakes notebook, badges and printable certificates"
+      ],
+      "tech": [
+        "JavaScript",
+        "three.js",
+        "Cloudflare Pages",
+        "Supabase",
+        "Python",
+        "PostgreSQL"
+      ],
+      "episodes": [
+        "Code Mela",
+        "The Lost Page",
+        "Platform 9",
+        "The Undo Button",
+        "The Coat Check",
+        "Warehouse Rush",
+        "Night-Shift Triage",
+        "The Tiffin Ladder",
+        "The Spice Box",
+        "The Cricket Scorer",
+        "The Last Bus",
+        "The Wedding Hall"
+      ],
+      "links": [],
+      "domain": "Education · learning platform",
+      "lines": [
+        "Pathfinder",
+        "Stories"
+      ],
+      "pattern": "dots"
+    },
+    {
+      "id": "this-site",
+      "name": "This website",
+      "kind": "Self-updating portfolio",
+      "tone": "blue",
+      "icon": "repeat",
+      "year": "2026",
+      "status": "Live",
+      "plain": "This site is built the way I build data platforms. Every night it pulls my GitHub activity, keeps a history that never ages out, checks the data, and republishes itself. A new blog post is just a text file; the site picks it up and goes live within minutes. I designed and built it together with Claude Code.",
+      "detail": "A Python pipeline with bronze, silver and gold layers, data-quality expectations that fail the build when content is wrong, and a GitHub Actions deploy to GitHub Pages. The architecture diagrams on this site are generated as SVG at build time from a small layout file.",
+      "features": [
+        "Daily GitHub tracking with streaks and history",
+        "Blog from Markdown files, with scheduling and drafts",
+        "A read-only SQL console over the site's own data, for curious visitors"
+      ],
+      "tech": [
+        "Python",
+        "Jinja2",
+        "GitHub Actions",
+        "GitHub Pages",
+        "SVG",
+        "Claude Code"
+      ],
+      "links": [
+        {
+          "label": "See the activity page",
+          "href": "activity/"
+        },
+        {
+          "label": "Try the SQL playground",
+          "href": "playground/"
+        }
+      ],
+      "domain": "Automation · this portfolio",
+      "lines": [
+        "A website that",
+        "rebuilds itself"
+      ],
+      "pattern": "waves"
+    }
+  ],
+  "early_projects": [
+    {
+      "name": "Used-car price predictor",
+      "plain": "A model that estimates what a second-hand car should sell for, built in Python with scikit-learn.",
+      "year": "2019",
+      "tone": "blue",
+      "lines": [
+        "Used-car",
+        "price predictor"
+      ]
+    },
+    {
+      "name": "Live weight detection for heavy vehicles",
+      "plain": "A sensor fitted to a truck that measures its load and reports it remotely, built on Arduino with a SIM808 module.",
+      "year": "2019",
+      "tone": "violet",
+      "lines": [
+        "Live weight detection for",
+        "heavy vehicles"
+      ]
+    },
+    {
+      "name": "Student quiz platform",
+      "plain": "An online service for running contests and quizzes in real time, built with PHP, SQL and JavaScript.",
+      "year": "2019",
+      "tone": "teal",
+      "lines": [
+        "Student quiz platform"
+      ]
+    }
+  ],
+  "about": {
+    "story": [
+      "I grew up in Siddipet, a town in Telangana, and studied Computer Science at KL University in Guntur, where I finished with a CGPA of 8.55. Alongside classes I worked as a teaching assistant, writing the lab programs other students learned from, and I became a University Innovation Fellow with Stanford's d.school, running design-thinking workshops that led to two student start-ups.",
+      "I joined Accenture in 2021. I started on platform support, fixing 700 incidents in a year and learning how production systems break. That earned me a move into engineering: first a real-time factory data platform for Mars, then a four-region migration off Teradata for a Fortune 500 manufacturer. Accenture's global management committee gave me an accelerated promotion for that work.",
+      "In 2026 I joined Cliff Systems as Technical Lead, where I lead PepsiCo's data platform migration across Europe, Asia-Pacific and Africa. Outside work I build things that teach: an open-source tool for proving migrations are correct, and Pathfinder Stories, a site that explains programming through everyday Indian stories.",
+      "What I care about most is trust. A dashboard is only useful if the numbers behind it are right, so I spend as much effort proving data is correct as I do moving it."
+    ],
+    "principles": [
+      {
+        "title": "Prove it, don't assume it",
+        "icon": "check",
+        "tone": "green",
+        "text": "Before anyone relies on migrated data, I produce evidence it matches the original: row by row, not just row counts."
+      },
+      {
+        "title": "Write it down",
+        "icon": "book",
+        "tone": "violet",
+        "text": "Playbooks, runbooks and root-cause notes, so the next person (or the next region) doesn't repeat the same mistake."
+      },
+      {
+        "title": "Leave the team stronger",
+        "icon": "users",
+        "tone": "amber",
+        "text": "I write enablement guides, mentor new joiners, and set up tools with guardrails so people can move faster safely."
+      }
+    ],
+    "teaching": [
+      {
+        "title": "Pathfinder Stories",
+        "text": "31 interactive coding lessons told as everyday Indian stories, with SQL practice and a pattern gym.",
+        "when": "2025 – 2026"
+      },
+      {
+        "title": "Databricks enablement series",
+        "text": "Six volumes for engineers: Unity Catalog, migration, compute, PySpark, performance tuning and SQL.",
+        "when": "2026"
+      },
+      {
+        "title": "Buddy Champion, Accenture",
+        "text": "Named for mentoring new joiners through their first months.",
+        "when": "2022 – 2026"
+      },
+      {
+        "title": "Design-thinking workshops",
+        "text": "As a University Innovation Fellow; two student start-ups came out of them.",
+        "when": "2020"
+      },
+      {
+        "title": "Teaching assistant, KL University",
+        "text": "Built lab programs for Operating Systems, Full-Stack Web Development with Angular and Enterprise Programming.",
+        "when": "2018 – 2020"
+      }
+    ],
+    "languages": [
+      {
+        "name": "English",
+        "level": "Fluent"
+      },
+      {
+        "name": "Telugu",
+        "level": "Native"
+      },
+      {
+        "name": "Hindi",
+        "level": "Professional"
+      },
+      {
+        "name": "Japanese",
+        "level": "Basic"
+      }
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.Tech, Computer Science & Engineering",
+      "school": "KL University (Koneru Lakshmaiah Education Foundation)",
+      "place": "Guntur, India",
+      "years": "2017 – 2021",
+      "note": "CGPA 8.55"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Microsoft Certified: Azure Administrator Associate (AZ-104)",
+      "issuer": "Microsoft",
+      "valid": "2023 – 2025"
+    },
+    {
+      "name": "Certified RPA Developer",
+      "issuer": "UiPath",
+      "valid": "2020"
+    },
+    {
+      "name": "CCNA Routing & Switching: Introduction to Networks",
+      "issuer": "Cisco",
+      "valid": "2020"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Accelerated Promotion Award",
+      "org": "Accenture",
+      "year": "",
+      "detail": "Recognised by the global management committee for client and business impact."
+    },
+    {
+      "title": "University Innovation Fellow",
+      "org": "Stanford d.school",
+      "year": "2020",
+      "detail": "Hasso Plattner Institute of Design, 2020 cohort."
+    },
+    {
+      "title": "HackerRank Silver badge",
+      "org": "Week of Code 36",
+      "year": "2018",
+      "detail": "Ranked 831 of 12,748 participants; also Silver in Problem Solving."
+    }
+  ],
+  "services": [
+    {
+      "id": "migration-assessment",
+      "name": "Move your data to a modern platform",
+      "tone": "blue",
+      "format": "Fixed scope",
+      "duration": "1 – 2 weeks",
+      "pitch": "You're paying for an old database and want to move to the cloud, but don't know what's connected to what. I inventory what you have and give you a plan you can execute, with effort and risks spelled out.",
+      "deliverables": [
+        "A list of every table, job and report, and what depends on what",
+        "A target design on Azure Databricks and Unity Catalog",
+        "A wave-by-wave plan with effort and risk",
+        "Rules for converting your SQL so results stay the same"
+      ],
+      "tags": [
+        "Teradata",
+        "Hive Metastore",
+        "Synapse",
+        "Unity Catalog"
+      ]
+    },
+    {
+      "id": "reconciliation",
+      "name": "Prove the numbers match",
+      "tone": "green",
+      "format": "Fixed scope",
+      "duration": "1 – 2 weeks",
+      "pitch": "Before you switch off the old system, I prove the new one holds exactly the same data, row by row, with evidence you can show an auditor.",
+      "deliverables": [
+        "Schema and row-count checks",
+        "Row-by-row fingerprint comparison",
+        "Agreed tolerance levels and a pass/fail gate",
+        "A runbook and an evidence template your team can reuse"
+      ],
+      "tags": [
+        "Data quality",
+        "PySpark",
+        "Delta Lake"
+      ]
+    },
+    {
+      "id": "pipeline-build",
+      "name": "Fix a slow or broken pipeline",
+      "tone": "amber",
+      "format": "Fixed scope or hourly",
+      "duration": "Days to 2 weeks",
+      "pitch": "A report that's always late, a job that keeps failing, a process nobody dares touch. I find the root cause, fix it, and document it so your team owns it afterwards.",
+      "deliverables": [
+        "Root-cause analysis in plain language",
+        "A redesigned load that only processes what changed",
+        "Retries and checks so it stops failing at 3 am",
+        "Automated deployment with Azure DevOps"
+      ],
+      "tags": [
+        "PySpark",
+        "Azure Data Factory",
+        "Databricks Workflows"
+      ]
+    },
+    {
+      "id": "finops-audit",
+      "name": "Cut your cloud data bill",
+      "tone": "gold",
+      "format": "Fixed scope",
+      "duration": "About 1 week",
+      "pitch": "Find the tables, jobs and clusters nobody uses any more, and learn what each of your production pipelines actually costs to run.",
+      "deliverables": [
+        "A usage audit from Databricks' own records",
+        "A list of what can be switched off safely",
+        "A cost model per pipeline, from price lists and real run times"
+      ],
+      "tags": [
+        "FinOps",
+        "Databricks",
+        "Azure"
+      ]
+    },
+    {
+      "id": "streaming",
+      "name": "See your data live",
+      "tone": "teal",
+      "format": "Fixed scope",
+      "duration": "1 – 3 weeks",
+      "pitch": "From sensors, apps or events to a live dashboard in seconds, with alerts when something drifts. The same pattern I built for Mars factories.",
+      "deliverables": [
+        "A reference design for your sources",
+        "The ingestion and processing pipeline",
+        "Live dashboards and alerting"
+      ],
+      "tags": [
+        "Event Hubs",
+        "Kafka",
+        "Kusto",
+        "Stream Analytics"
+      ]
+    },
+    {
+      "id": "ai-enablement",
+      "name": "Use AI in your data team, safely",
+      "tone": "violet",
+      "format": "Workshop + set-up",
+      "duration": "1 – 2 weeks",
+      "pitch": "Get your engineers productive with AI tools without giving an AI the keys to production. I test the models on your real use cases, connect them to your tools, and set the guardrails.",
+      "deliverables": [
+        "A model comparison on your actual tasks",
+        "Connections to Databricks and Power BI through MCP",
+        "Guardrails: data access, verification, human review",
+        "A short playbook for the team"
+      ],
+      "tags": [
+        "LLM agents",
+        "MCP",
+        "Guardrails"
+      ]
+    },
+    {
+      "id": "consult",
+      "name": "An hour of advice",
+      "tone": "coral",
+      "format": "Hourly",
+      "duration": "60 – 90 min",
+      "pitch": "A call to look at your architecture, a stubborn problem, a permissions model, or a plan you want a second opinion on. Written notes afterwards.",
+      "deliverables": [
+        "A live call or a written review",
+        "Notes with clear next steps"
+      ],
+      "tags": [
+        "Databricks",
+        "Spark",
+        "Azure"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "I'm not technical. Can we still work together?",
+      "a": "Yes. Most of my clients' sponsors aren't engineers. I explain what I'm doing and why in plain language, and the written deliverables are meant to be read by the people who pay for the work, not just the people who maintain it."
+    },
+    {
+      "q": "How does a project start?",
+      "a": "Send a short description through the form. I reply within two working days to set up a scoping call, then send a fixed quote (or an hourly rate for open-ended help) before any work starts."
+    },
+    {
+      "q": "Do you need access to our systems?",
+      "a": "For assessments and audits, read-only access is enough. For builds, I work in your environment under your controls, and I never copy data out of it."
+    },
+    {
+      "q": "Where are you, and when are you available?",
+      "a": "Hyderabad, India (IST). I work with teams in Europe, the US and Asia and will find overlap hours that work for you."
+    },
+    {
+      "q": "Are you open to full-time roles?",
+      "a": "Yes, for the right lead or senior data engineering role. The résumé is on this site, and the contact page is the quickest way to reach me."
+    }
+  ],
+  "skills": {
+    "languages": {
+      "label": "Languages",
+      "items": [
+        "Python",
+        "PySpark",
+        "Spark SQL",
+        "T-SQL",
+        "KQL",
+        "PowerShell",
+        "JavaScript"
+      ]
+    },
+    "platforms": {
+      "label": "Data platforms",
+      "items": [
+        "Azure Databricks",
+        "Microsoft Fabric",
+        "Power BI",
+        "Delta Lake",
+        "Unity Catalog",
+        "ADLS Gen2",
+        "Azure Synapse Analytics",
+        "Azure Data Explorer (Kusto)",
+        "Teradata",
+        "Hive Metastore"
+      ]
+    },
+    "streaming": {
+      "label": "Processing & streaming",
+      "items": [
+        "Apache Spark",
+        "Spark Structured Streaming",
+        "Apache Kafka",
+        "Azure Event Hubs",
+        "Azure Stream Analytics",
+        "Azure IoT Hub",
+        "Azure Event Grid",
+        "Azure Logic Apps"
+      ]
+    },
+    "orchestration": {
+      "label": "Orchestration & DevOps",
+      "items": [
+        "Azure Data Factory",
+        "Databricks Workflows",
+        "Azure DevOps",
+        "ARM templates",
+        "Databricks Asset Bundles",
+        "Databricks CLI",
+        "Git"
+      ]
+    },
+    "engineering": {
+      "label": "Data engineering",
+      "items": [
+        "Medallion architecture",
+        "Dimensional modelling",
+        "Incremental MERGE loads",
+        "Hash-based surrogate keys",
+        "Data reconciliation",
+        "Unity Catalog governance",
+        "Platform migration"
+      ]
+    },
+    "observability": {
+      "label": "Monitoring",
+      "items": [
+        "Azure Monitor",
+        "Log Analytics",
+        "Databricks system tables",
+        "Grafana",
+        "Datadog"
+      ]
+    },
+    "ai": {
+      "label": "AI & LLM engineering",
+      "items": [
+        "LLM evaluation",
+        "LLM agents",
+        "Model Context Protocol (MCP)",
+        "Agentic workflows",
+        "Prompt engineering",
+        "AI guardrails",
+        "AI-assisted code generation"
+      ]
+    },
+    "apps": {
+      "label": "Apps & operations",
+      "items": [
+        "Angular",
+        "Power Apps",
+        "ServiceNow",
+        "Incident & problem management"
+      ]
+    }
+  },
+  "graph": {
+    "domains": [
+      {
+        "id": "migrate",
+        "label": "Migrations",
+        "tone": "blue",
+        "target": "#experience",
+        "tip": "Moving data off Teradata, Hive Metastore and Synapse into governed lakehouses"
+      },
+      {
+        "id": "stream",
+        "label": "Real-time",
+        "tone": "teal",
+        "target": "#experience",
+        "tip": "Sensor and event data into live dashboards and alerts"
+      },
+      {
+        "id": "ai",
+        "label": "AI, safely",
+        "tone": "violet",
+        "target": "#about",
+        "tip": "LLM tools for engineering teams, with guardrails"
+      },
+      {
+        "id": "teach",
+        "label": "Teaching",
+        "tone": "amber",
+        "target": "#projects",
+        "tip": "Pathfinder Stories, enablement guides, mentoring"
+      },
+      {
+        "id": "oss",
+        "label": "Open source",
+        "tone": "coral",
+        "target": "#projects",
+        "tip": "lakehouse-signoff and this website"
+      }
+    ],
+    "tools": [
+      {
+        "label": "Databricks",
+        "to": [
+          "migrate",
+          "stream"
+        ]
+      },
+      {
+        "label": "Unity Catalog",
+        "to": [
+          "migrate"
+        ]
+      },
+      {
+        "label": "Delta Lake",
+        "to": [
+          "migrate",
+          "oss"
+        ]
+      },
+      {
+        "label": "PySpark",
+        "to": [
+          "migrate",
+          "oss"
+        ]
+      },
+      {
+        "label": "Teradata",
+        "to": [
+          "migrate"
+        ]
+      },
+      {
+        "label": "Data Factory",
+        "to": [
+          "migrate"
+        ]
+      },
+      {
+        "label": "Kafka",
+        "to": [
+          "stream"
+        ]
+      },
+      {
+        "label": "Event Hubs",
+        "to": [
+          "stream"
+        ]
+      },
+      {
+        "label": "Kusto",
+        "to": [
+          "stream"
+        ]
+      },
+      {
+        "label": "Power BI",
+        "to": [
+          "stream",
+          "ai"
+        ]
+      },
+      {
+        "label": "LLM agents",
+        "to": [
+          "ai"
+        ]
+      },
+      {
+        "label": "MCP",
+        "to": [
+          "ai"
+        ]
+      },
+      {
+        "label": "Python",
+        "to": [
+          "oss",
+          "teach",
+          "ai"
+        ]
+      },
+      {
+        "label": "SQL",
+        "to": [
+          "teach",
+          "migrate"
+        ]
+      },
+      {
+        "label": "Pathfinder",
+        "to": [
+          "teach"
+        ]
+      },
+      {
+        "label": "lakehouse-signoff",
+        "to": [
+          "oss"
+        ]
+      }
+    ]
+  },
+  "skill_tiles": [
+    {
+      "name": "Azure Databricks",
+      "icon": "layers",
+      "tone": "coral"
+    },
+    {
+      "name": "Unity Catalog",
+      "icon": "shield",
+      "tone": "violet"
+    },
+    {
+      "name": "Delta Lake",
+      "icon": "db",
+      "tone": "blue"
+    },
+    {
+      "name": "PySpark",
+      "icon": "bolt",
+      "tone": "amber"
+    },
+    {
+      "name": "Azure Data Factory",
+      "icon": "clock",
+      "tone": "teal",
+      "short": "Data Factory"
+    },
+    {
+      "name": "Azure Data Explorer (Kusto)",
+      "icon": "wave",
+      "tone": "blue",
+      "short": "Kusto (ADX)"
+    },
+    {
+      "name": "Power BI",
+      "icon": "chart",
+      "tone": "amber"
+    },
+    {
+      "name": "Python",
+      "icon": "code",
+      "tone": "green"
+    },
+    {
+      "name": "Azure DevOps",
+      "icon": "branch",
+      "tone": "blue"
+    },
+    {
+      "name": "Teradata",
+      "icon": "db",
+      "tone": "coral"
+    },
+    {
+      "name": "Azure Event Hubs",
+      "icon": "inbox",
+      "tone": "teal",
+      "short": "Event Hubs"
+    },
+    {
+      "name": "LLM agents",
+      "icon": "cpu",
+      "tone": "violet"
+    }
+  ]
+}

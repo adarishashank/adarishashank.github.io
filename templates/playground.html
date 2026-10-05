@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% set path = "playground/" %}
+{% set page_title = "SQL playground — " ~ site.author.name %}
+{% set page_desc = "A small SQL console that runs in your browser over this site's own data: roles, skills, posts and GitHub activity. For the technically curious." %}
+
+{% block content %}
+<header class="page-head">
+  <div class="wrap">
+    <p class="kicker">For the technically curious</p>
+    <h1>Query this site like a database</h1>
+    <p class="lede">A small SQL engine that runs entirely in your browser over {{ table_names | length }} tables: my roles, skills, posts and the GitHub activity this site collects every night. Try a preset, then write your own. Nothing leaves your browser.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap lab-grid">
+    <div class="sql card" id="sql" data-tables="{{ url('data/tables.json') }}">
+      <aside class="sql__schema">
+        <p class="mono muted">tables</p>
+        <ul id="sql-tables">{% for t in table_names %}<li><button type="button" class="sql__tbl mono" data-table="{{ t }}">{{ icon("table", 13) }}{{ t }}</button></li>{% endfor %}</ul>
+      </aside>
+      <div class="sql__main">
+        <div class="sql__presets" role="list" aria-label="Example queries">
+          <button type="button" class="chip" data-sql="SELECT org, project, start_month, months, status FROM experience WHERE kind = 'job' ORDER BY start_month DESC">My jobs</button>
+          <button type="button" class="chip" data-sql="SELECT name, schema, used_in FROM skills WHERE name LIKE '%Spark%' OR name LIKE '%Databricks%'">Where I used Spark</button>
+          <button type="button" class="chip" data-sql="SELECT name, used_in_count FROM skills WHERE used_in_count > 0 ORDER BY used_in_count DESC, name LIMIT 10">Most-used skills</button>
+          <button type="button" class="chip" data-sql="SELECT weekday, SUM(contributions) AS total FROM github_daily GROUP BY weekday ORDER BY total DESC">GitHub by weekday</button>
+          <button type="button" class="chip" data-sql="SELECT name, format, duration FROM services">Services</button>
+          <button type="button" class="chip" data-sql="SHOW TABLES">SHOW TABLES</button>
+        </div>
+        <div class="sql__editor-wrap">
+          <label class="sr-only" for="sql-editor">SQL query</label>
+          <textarea id="sql-editor" class="sql__editor mono" spellcheck="false" autocapitalize="off" autocomplete="off" rows="4">SELECT org, project, start_month, months, status
+FROM experience
+WHERE kind = 'job'
+ORDER BY start_month DESC</textarea>
+          <div class="sql__bar">
+            <span class="mono sql__hint"><kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> to run · <code>HELP</code> for syntax</span>
+            <button type="button" class="btn btn--primary btn--sm" id="sql-run">{{ icon("play", 14) }}Run</button>
+          </div>
+        </div>
+        <div class="sql__status mono" id="sql-status" aria-live="polite"></div>
+        <div class="sql__result" id="sql-result" tabindex="0" aria-label="Query results"></div>
+      </div>
+    </div>
+    <aside class="lab-aside">
+      <div class="card"><h3>What it understands</h3><ul class="mono"><li>SELECT … FROM …</li><li>WHERE · GROUP BY · HAVING</li><li>ORDER BY · LIMIT</li><li>COUNT SUM AVG MIN MAX</li><li>LIKE · IN · BETWEEN · CASE</li><li>SHOW TABLES · DESCRIBE t</li></ul></div>
+      <div class="card"><h3>Tables</h3><ul>{% for t in table_names %}<li><code>{{ t }}</code> <span class="muted">{{ tables_meta[t].rows | length }} rows</span></li>{% endfor %}</ul></div>
+      <div class="card"><h3>Read-only</h3><p>You can look, not change. <code>DROP TABLE</code> is answered politely.</p></div>
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url('static/js/minisql.js') }}?v={{ asset_v }}" defer></script>
+<script src="{{ url('static/js/app.js') }}?v={{ asset_v }}" defer></script>
+{% endblock %}

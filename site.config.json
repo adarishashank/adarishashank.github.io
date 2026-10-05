@@ -1,0 +1,36 @@
+{
+  "title": "Shashank Adari — Lead Data Engineer",
+  "short_title": "Shashank Adari",
+  "description": "Lead Data Engineer with 5+ years on Microsoft Azure. I move company data to modern cloud platforms, prove nothing was lost on the way, and make live data useful. Open to roles and small projects.",
+  "url": "https://adarishashank.github.io",
+  "base_path": "/",
+  "custom_domain": "",
+  "lang": "en",
+  "timezone_label": "India (IST)",
+
+  "author": {
+    "name": "Shashank Adari",
+    "full_name": "Adari Durga Sai Shashank",
+    "email": "saishashankadari@gmail.com",
+    "avatar": "static/img/shashank-headshot.jpg"
+  },
+
+  "social": {
+    "github": "https://github.com/adarishashank",
+    "linkedin": "https://www.linkedin.com/in/adari-shashank/"
+  },
+
+  "github": { "username": "adarishashank", "live_events": true },
+
+  "gigs": {
+    "available": true,
+    "status_label": "Open to roles and small projects",
+    "capacity": "I work full time, so I take on a small number of well-defined projects at a time.",
+    "response_time": "I reply within two working days.",
+    "form_endpoint": ""
+  },
+
+  "resume_pdf": "static/resume/Shashank_Adari_Resume.pdf",
+
+  "blog": { "posts_per_page_home": 3, "feed_items": 20 }
+}

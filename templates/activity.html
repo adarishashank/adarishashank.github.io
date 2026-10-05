@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% set path = "activity/" %}
+{% set page_title = "Activity — " ~ site.author.name %}
+{% set page_desc = "Shashank Adari's coding activity on GitHub, updated every night by this site's own pipeline." %}
+{% set gh = github %}
+{% macro status_badge(status) -%}
+{% set s = status or "RUNNING" %}
+{% if s == "SUCCEEDED" %}<span class="badge badge--good">{{ icon("check-circle", 13) }}Succeeded</span>
+{% elif s == "SUCCEEDED_WITH_WARNINGS" %}<span class="badge badge--warn">{{ icon("alert", 13) }}Succeeded · warnings</span>
+{% elif s == "RUNNING" %}<span class="badge badge--run"><span class="pulse" aria-hidden="true"></span>Running</span>
+{% elif s == "SKIPPED" %}<span class="badge badge--muted">Skipped</span>
+{% else %}<span class="badge badge--bad">{{ icon("x-circle", 13) }}{{ s | replace("_", " ") | lower | capitalize }}</span>{% endif %}
+{%- endmacro %}
+
+{% block content %}
+<header class="page-head">
+  <div class="wrap">
+    <p class="kicker">Activity</p>
+    <h1>What I've been coding</h1>
+    <p class="lede">This page is filled in automatically. Every night the site pulls my GitHub activity, adds it to a history that never ages out, checks it, and republishes. For the curious, the run that built this page is at the bottom.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="fresh">
+      {% if gh.refreshed_at %}
+      <span class="fresh__dot" data-fresh="{{ gh.refreshed_at }}" aria-hidden="true"></span>
+      <span>Updated <time datetime="{{ gh.refreshed_at }}" data-reltime>{{ gh.refreshed_at }}</time></span>
+      {% if gh.tracked_since %}<span class="muted">· tracked daily since {{ gh.tracked_since | date }}</span>{% endif %}
+      <span class="muted">· refreshes every night</span>
+      {% else %}<span class="muted">No GitHub data yet. It appears after the first nightly run.</span>{% endif %}
+    </div>
+
+    <ul class="tiles">
+      <li class="tile tone-blue"><p class="tile__label">Contributions, past year</p><p class="tile__val">{{ gh.totals.last_year if gh.totals else 0 }}</p><p class="tile__sub">{{ gh.totals.last_30 if gh.totals else 0 }} in the last 30 days</p></li>
+      <li class="tile tone-teal"><p class="tile__label">Current streak</p><p class="tile__val">{% set cs = gh.streak.current if gh.streak else 0 %}{{ cs }}<span class="tile__unit">{{ cs | unit("day") }}</span></p><p class="tile__sub">{{ (gh.totals.active_days if gh.totals else 0) | plural("active day") }} this year</p></li>
+      <li class="tile tone-violet"><p class="tile__label">Longest streak</p><p class="tile__val">{% set ls = gh.streak.longest if gh.streak else 0 %}{{ ls }}<span class="tile__unit">{{ ls | unit("day") }}</span></p><p class="tile__sub">{% if gh.streak and gh.streak.longest_start %}{{ gh.streak.longest_start | date }} → {{ gh.streak.longest_end | date }}{% else %}in tracked history{% endif %}</p></li>
+      <li class="tile tone-amber"><p class="tile__label">Busiest day</p><p class="tile__val">{{ gh.totals.best_day.c if gh.totals else 0 }}</p><p class="tile__sub">{% if gh.totals and gh.totals.best_day.d %}{{ gh.totals.best_day.d | date }}{% else %}–{% endif %}</p></li>
+      <li class="tile tone-coral"><p class="tile__label">Public repositories</p><p class="tile__val">{{ gh.profile.public_repos if gh.profile else 0 }}</p><p class="tile__sub">on GitHub for {{ gh.profile.member_years if gh.profile else "" }} years</p></li>
+      <li class="tile tone-green"><p class="tile__label">Blog posts</p><p class="tile__val">{{ writing.posts | default(0) }}</p><p class="tile__sub">{{ writing.words | default(0) | compact }} words published</p></li>
+    </ul>
+
+    <figure class="card viz viz--heat">
+      <figcaption class="viz__head"><span><b>Contributions per day</b> <span class="muted">· last 53 weeks</span></span><button type="button" class="link-btn mono" data-toggle-table="heat-table" aria-expanded="false">view as table</button></figcaption>
+      <div class="heatmap" id="heatmap"></div>
+      <div class="heat-legend" aria-hidden="true"><span>less</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>more</span></div>
+      <div class="viz__table" id="heat-table" hidden>
+        <table class="data-table"><thead><tr><th>Month</th><th class="num">Contributions</th></tr></thead>
+          <tbody>{% for m in gh.monthly | default([]) %}<tr><td class="mono">{{ m.m }}</td><td class="num">{{ m.c }}</td></tr>{% endfor %}</tbody></table>
+      </div>
+    </figure>
+
+    <div class="viz-grid">
+      <figure class="card viz"><figcaption class="viz__head"><span><b>By weekday</b> <span class="muted">· past year</span></span></figcaption><div class="chart" id="chart-weekday"></div></figure>
+      <figure class="card viz"><figcaption class="viz__head"><span><b>By month</b> <span class="muted">· last 12 months</span></span></figcaption><div class="chart" id="chart-monthly"></div></figure>
+      <figure class="card viz"><figcaption class="viz__head"><span><b>Languages</b> <span class="muted">· main language of my repositories</span></span></figcaption><div class="chart" id="chart-langs"></div></figure>
+    </div>
+
+    <div class="viz-grid viz-grid--2">
+      <section class="card stream" aria-labelledby="stream-title">
+        <header class="viz__head"><span><b id="stream-title">Recent public activity</b></span><span class="live" id="stream-live" hidden><span class="pulse" aria-hidden="true"></span>live</span></header>
+        <ol class="stream__list" id="stream-list">
+          {% for e in gh.events | default([]) %}{% if loop.index <= 12 %}
+          <li class="ev"><span class="ev__off">{{ "%04d" | format(loop.revindex0) }}</span><time class="ev__ts" datetime="{{ e.created_at }}">{{ e.created_at[:16] | replace("T", " ") }}</time><span class="ev__type">{{ e.type | replace("Event", "") }}</span><span class="ev__body"><a href="https://github.com/{{ e.repo }}" rel="noopener" target="_blank">{{ e.repo.split("/")[-1] }}</a> <span class="muted">{{ e.summary }}</span></span></li>
+          {% endif %}{% else %}
+          <li class="ev ev--empty">No public activity in the last 90 days. Private work doesn't show here.</li>
+          {% endfor %}
+        </ol>
+        <p class="stream__foot">GitHub only keeps 90 days of this; the site saves each day's events so the history keeps growing.</p>
+      </section>
+
+      <section class="card jobruns" aria-labelledby="runs-title">
+        <header class="viz__head"><span><b id="runs-title">The run that built this page</b></span></header>
+        {% set last = runs[0] if runs else none %}
+        {% if last %}
+        <div class="gantt" id="gantt">
+          <p class="gantt__meta"><span>{{ last.run_id }}</span><span class="muted">{{ last.trigger }}</span>{% if last.duration_ms %}<span class="muted">{{ last.duration_ms }} ms</span>{% endif %}{{ status_badge(last.status) }}</p>
+          <ol class="gantt__rows">
+            {% for t in last.tasks %}
+            <li class="gantt__row" data-ms="{{ t.duration_ms or 0 }}" data-status="{{ t.status or 'RUNNING' }}"><span class="gantt__name">{{ t.name }}</span><span class="gantt__track"><span class="gantt__bar"></span></span><span class="gantt__ms">{% if t.status == "SKIPPED" %}skipped{% elif t.status %}{{ t.duration_ms }} ms{% else %}this page{% endif %}</span></li>
+            {% endfor %}
+          </ol>
+        </div>
+        {% endif %}
+        {% if dq and dq.checks %}
+        <details class="dq">
+          <summary>data checks: {{ dq.passed }}/{{ dq.total }} passed{% if dq.warnings %} · {{ dq.warnings | plural("warning") }}{% endif %}</summary>
+          <ul>{% for c in dq.checks %}<li class="dq__row {{ 'is-pass' if c.passed else 'is-' ~ c.severity }}"><span class="dq__ico">{{ icon("check-circle" if c.passed else "alert", 14) }}</span><span class="mono">{{ c.name }}</span><span class="muted">{{ c.detail }}</span></li>{% endfor %}</ul>
+        </details>
+        {% endif %}
+        {% if runs | length > 1 %}
+        <div class="table-scroll">
+          <table class="data-table runs-table">
+            <thead><tr><th>Run</th><th>Trigger</th><th>Started</th><th class="num">Duration</th><th>Status</th></tr></thead>
+            <tbody>{% for r in runs[:6] %}<tr><td class="mono">{{ r.run_id }}</td><td class="mono muted">{{ r.trigger }}</td><td><time datetime="{{ r.started_at }}" data-reltime>{{ r.started_at }}</time></td><td class="num mono">{{ r.duration_ms or "–" }}{% if r.duration_ms %} ms{% endif %}</td><td>{{ status_badge(r.status) }}</td></tr>{% endfor %}</tbody>
+          </table>
+        </div>
+        {% endif %}
+      </section>
+    </div>
+
+    {% if gh.repos %}
+    <h2 style="font-size:1.3rem;margin:8px 0 14px">Recently updated repositories</h2>
+    <div class="repos">
+      {% for r in gh.repos[:6] %}
+      <a class="repo card" href="{{ r.url }}" rel="noopener" target="_blank">
+        <span class="repo__name">{{ icon("github", 14) }}{{ r.name }}</span>
+        <span class="repo__desc">{{ r.description or "No description yet." }}</span>
+        <span class="repo__meta">{% if r.language %}<span><i class="lang-dot"></i>{{ r.language }}</span>{% endif %}<span>★ {{ r.stars }}</span><span>updated <time datetime="{{ r.pushed_at }}" data-reltime>{{ r.pushed_at[:10] }}</time></span></span>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <script type="application/json" id="telemetry-data">{{ {
+      "calendar": gh.calendar | default([]), "levels": gh.levels | default([1, 2, 3, 4]),
+      "weekday": gh.weekday | default([0, 0, 0, 0, 0, 0, 0]), "monthly": gh.monthly | default([]),
+      "languages": gh.languages | default([]), "events": gh.events | default([]),
+      "user": site.github.username, "live": site.github.live_events
+    } | tojson }}</script>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url('static/js/charts.js') }}?v={{ asset_v }}" defer></script>
+<script src="{{ url('static/js/app.js') }}?v={{ asset_v }}" defer></script>
+{% endblock %}

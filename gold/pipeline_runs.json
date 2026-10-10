@@ -1,5 +1,102 @@
 [
   {
+    "run_id": "#8",
+    "trigger": "schedule",
+    "commit": "583963a",
+    "started_at": "2026-10-10T21:57:47Z",
+    "status": "SUCCEEDED",
+    "duration_ms": 2372,
+    "tasks": [
+      {
+        "name": "bronze.ingest_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 2147,
+        "metrics": {
+          "repos": 33,
+          "events": 4,
+          "calendar_days": 371,
+          "calendar_source": "graphql",
+          "authenticated": true
+        },
+        "error": null
+      },
+      {
+        "name": "silver.merge_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 5,
+        "metrics": {
+          "contributions": {
+            "rows": 371,
+            "inserted": 1,
+            "updated": 0
+          },
+          "events": {
+            "rows": 4,
+            "inserted": 1
+          },
+          "repos": {
+            "rows": 33
+          },
+          "profile_daily": {
+            "rows": 7,
+            "inserted": 1,
+            "updated": 0
+          }
+        },
+        "error": null
+      },
+      {
+        "name": "silver.parse_posts",
+        "status": "SUCCEEDED",
+        "duration_ms": 26,
+        "metrics": {
+          "published": 2,
+          "draft": 0,
+          "scheduled": 0
+        },
+        "error": null
+      },
+      {
+        "name": "gold.aggregate",
+        "status": "SUCCEEDED",
+        "duration_ms": 16,
+        "metrics": {
+          "calendar_days": 372,
+          "events": 4,
+          "repos": 8,
+          "posts": 2
+        },
+        "error": null
+      },
+      {
+        "name": "quality.expectations",
+        "status": "SUCCEEDED",
+        "duration_ms": 1,
+        "metrics": {
+          "passed": 8,
+          "total": 8,
+          "warnings": 0
+        },
+        "error": null
+      },
+      {
+        "name": "serve.render_site",
+        "status": "SUCCEEDED",
+        "duration_ms": 176,
+        "metrics": {
+          "pages": 7,
+          "tables": 12
+        },
+        "error": null
+      }
+    ],
+    "dq": {
+      "passed": 8,
+      "total": 8,
+      "warnings": 0
+    }
+  },
+  {
     "run_id": "#7",
     "trigger": "schedule",
     "commit": "583963a",

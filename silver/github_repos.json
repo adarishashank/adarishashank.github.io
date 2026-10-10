@@ -1,5 +1,30 @@
 [
   {
+    "name": "inkonweb-smart-vehicle-qr-tags",
+    "description": "Privacy-first smart vehicle QR tags: scan to contact the owner via masked calls (Exotel) or private alerts. Node.js, Express, PostgreSQL, Docker.",
+    "language": "JavaScript",
+    "stars": 0,
+    "forks": 0,
+    "fork": false,
+    "archived": false,
+    "pushed_at": "2026-10-10T17:42:29Z",
+    "created_at": "2026-10-10T17:42:23Z",
+    "url": "https://github.com/adarishashank/inkonweb-smart-vehicle-qr-tags",
+    "topics": [
+      "exotel",
+      "express",
+      "india",
+      "masked-calling",
+      "nodejs",
+      "postgresql",
+      "privacy",
+      "pwa",
+      "qr-code",
+      "vehicle"
+    ],
+    "homepage": ""
+  },
+  {
     "name": "adarishashank.github.io",
     "description": "Portfolio of Shashank Adari, Lead Data Engineer. Built by a nightly Python pipeline, deployed with GitHub Actions.",
     "language": "Python",
@@ -7,7 +32,7 @@
     "forks": 0,
     "fork": false,
     "archived": false,
-    "pushed_at": "2026-10-08T23:31:38Z",
+    "pushed_at": "2026-10-09T22:50:49Z",
     "created_at": "2026-10-05T05:25:30Z",
     "url": "https://github.com/adarishashank/adarishashank.github.io",
     "topics": [],

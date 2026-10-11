@@ -1,8 +1,8 @@
 {
-  "refreshed_at": "2026-10-10T21:57:47Z",
+  "refreshed_at": "2026-10-11T22:23:17Z",
   "source": "graphql",
   "breakdown": {
-    "totalCommitContributions": 8,
+    "totalCommitContributions": 7,
     "totalPullRequestContributions": 1,
     "totalPullRequestReviewContributions": 0,
     "totalIssueContributions": 0,
@@ -17,24 +17,24 @@
     "created_at": "2017-12-28T04:30:18Z",
     "bio": null,
     "followers": 1,
-    "following": 4,
-    "public_repos": 33,
+    "following": 5,
+    "public_repos": 32,
     "stars": 0,
     "member_years": 8.8
   },
   "totals": {
-    "last_year": 13,
-    "ytd": 9,
-    "last_30": 6,
-    "active_days": 6,
-    "all_time_tracked": 13,
+    "last_year": 11,
+    "ytd": 7,
+    "last_30": 4,
+    "active_days": 5,
+    "all_time_tracked": 11,
     "best_day": {
       "d": "2025-12-24",
       "c": 4
     }
   },
   "streak": {
-    "current": 1,
+    "current": 0,
     "longest": 3,
     "longest_start": "2026-10-03",
     "longest_end": "2026-10-05"
@@ -1528,10 +1528,14 @@
     },
     {
       "d": "2026-10-10",
-      "c": 2
+      "c": 0
     },
     {
       "d": "2026-10-11",
+      "c": 0
+    },
+    {
+      "d": "2026-10-12",
       "c": 0
     }
   ],
@@ -1541,7 +1545,7 @@
     4,
     0,
     0,
-    3,
+    1,
     1
   ],
   "monthly": [
@@ -1591,7 +1595,7 @@
     },
     {
       "m": "2026-10",
-      "c": 6
+      "c": 4
     }
   ],
   "languages": [
@@ -1609,7 +1613,7 @@
     },
     {
       "name": "JavaScript",
-      "repos": 2
+      "repos": 1
     },
     {
       "name": "C",
@@ -1626,31 +1630,6 @@
   ],
   "repos": [
     {
-      "name": "inkonweb-smart-vehicle-qr-tags",
-      "description": "Privacy-first smart vehicle QR tags: scan to contact the owner via masked calls (Exotel) or private alerts. Node.js, Express, PostgreSQL, Docker.",
-      "language": "JavaScript",
-      "stars": 0,
-      "forks": 0,
-      "fork": false,
-      "archived": false,
-      "pushed_at": "2026-10-10T17:42:29Z",
-      "created_at": "2026-10-10T17:42:23Z",
-      "url": "https://github.com/adarishashank/inkonweb-smart-vehicle-qr-tags",
-      "topics": [
-        "exotel",
-        "express",
-        "india",
-        "masked-calling",
-        "nodejs",
-        "postgresql",
-        "privacy",
-        "pwa",
-        "qr-code",
-        "vehicle"
-      ],
-      "homepage": ""
-    },
-    {
       "name": "adarishashank.github.io",
       "description": "Portfolio of Shashank Adari, Lead Data Engineer. Built by a nightly Python pipeline, deployed with GitHub Actions.",
       "language": "Python",
@@ -1658,7 +1637,7 @@
       "forks": 0,
       "fork": false,
       "archived": false,
-      "pushed_at": "2026-10-09T22:50:49Z",
+      "pushed_at": "2026-10-10T21:57:50Z",
       "created_at": "2026-10-05T05:25:30Z",
       "url": "https://github.com/adarishashank/adarishashank.github.io",
       "topics": [],
@@ -1748,6 +1727,20 @@
       "pushed_at": "2024-06-07T06:34:11Z",
       "created_at": "2024-06-07T06:33:27Z",
       "url": "https://github.com/adarishashank/GenAI_POC",
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "Gym_Management_System",
+      "description": "",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2021-05-25T07:38:56Z",
+      "created_at": "2021-05-25T07:38:55Z",
+      "url": "https://github.com/adarishashank/Gym_Management_System",
       "topics": [],
       "homepage": ""
     }
@@ -1842,6 +1835,14 @@
       "public_repos": "33",
       "stars": "0",
       "contributions_last_year": "13"
+    },
+    {
+      "date": "2026-10-12",
+      "followers": "1",
+      "following": "5",
+      "public_repos": "32",
+      "stars": "0",
+      "contributions_last_year": "11"
     }
   ]
 }

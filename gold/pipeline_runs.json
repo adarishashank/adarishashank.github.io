@@ -1,5 +1,102 @@
 [
   {
+    "run_id": "#33",
+    "trigger": "schedule",
+    "commit": "583963a",
+    "started_at": "2026-11-04T23:53:21Z",
+    "status": "SUCCEEDED",
+    "duration_ms": 3318,
+    "tasks": [
+      {
+        "name": "bronze.ingest_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 3162,
+        "metrics": {
+          "repos": 32,
+          "events": 1,
+          "calendar_days": 368,
+          "calendar_source": "graphql",
+          "authenticated": true
+        },
+        "error": null
+      },
+      {
+        "name": "silver.merge_github",
+        "status": "SUCCEEDED",
+        "duration_ms": 4,
+        "metrics": {
+          "contributions": {
+            "rows": 396,
+            "inserted": 1,
+            "updated": 0
+          },
+          "events": {
+            "rows": 4,
+            "inserted": 0
+          },
+          "repos": {
+            "rows": 32
+          },
+          "profile_daily": {
+            "rows": 32,
+            "inserted": 1,
+            "updated": 0
+          }
+        },
+        "error": null
+      },
+      {
+        "name": "silver.parse_posts",
+        "status": "SUCCEEDED",
+        "duration_ms": 21,
+        "metrics": {
+          "published": 2,
+          "draft": 0,
+          "scheduled": 0
+        },
+        "error": null
+      },
+      {
+        "name": "gold.aggregate",
+        "status": "SUCCEEDED",
+        "duration_ms": 13,
+        "metrics": {
+          "calendar_days": 376,
+          "events": 4,
+          "repos": 8,
+          "posts": 2
+        },
+        "error": null
+      },
+      {
+        "name": "quality.expectations",
+        "status": "SUCCEEDED",
+        "duration_ms": 2,
+        "metrics": {
+          "passed": 8,
+          "total": 8,
+          "warnings": 0
+        },
+        "error": null
+      },
+      {
+        "name": "serve.render_site",
+        "status": "SUCCEEDED",
+        "duration_ms": 116,
+        "metrics": {
+          "pages": 7,
+          "tables": 12
+        },
+        "error": null
+      }
+    ],
+    "dq": {
+      "passed": 8,
+      "total": 8,
+      "warnings": 0
+    }
+  },
+  {
     "run_id": "#32",
     "trigger": "schedule",
     "commit": "583963a",
@@ -2799,103 +2896,6 @@
         "name": "serve.render_site",
         "status": "SUCCEEDED",
         "duration_ms": 162,
-        "metrics": {
-          "pages": 7,
-          "tables": 12
-        },
-        "error": null
-      }
-    ],
-    "dq": {
-      "passed": 8,
-      "total": 8,
-      "warnings": 0
-    }
-  },
-  {
-    "run_id": "#3",
-    "trigger": "schedule",
-    "commit": "583963a",
-    "started_at": "2026-10-06T00:16:41Z",
-    "status": "SUCCEEDED",
-    "duration_ms": 2036,
-    "tasks": [
-      {
-        "name": "bronze.ingest_github",
-        "status": "SUCCEEDED",
-        "duration_ms": 1809,
-        "metrics": {
-          "repos": 32,
-          "events": 2,
-          "calendar_days": 367,
-          "calendar_source": "graphql",
-          "authenticated": true
-        },
-        "error": null
-      },
-      {
-        "name": "silver.merge_github",
-        "status": "SUCCEEDED",
-        "duration_ms": 6,
-        "metrics": {
-          "contributions": {
-            "rows": 367,
-            "inserted": 1,
-            "updated": 0
-          },
-          "events": {
-            "rows": 2,
-            "inserted": 0
-          },
-          "repos": {
-            "rows": 32
-          },
-          "profile_daily": {
-            "rows": 2,
-            "inserted": 1,
-            "updated": 0
-          }
-        },
-        "error": null
-      },
-      {
-        "name": "silver.parse_posts",
-        "status": "SUCCEEDED",
-        "duration_ms": 28,
-        "metrics": {
-          "published": 2,
-          "draft": 0,
-          "scheduled": 0
-        },
-        "error": null
-      },
-      {
-        "name": "gold.aggregate",
-        "status": "SUCCEEDED",
-        "duration_ms": 16,
-        "metrics": {
-          "calendar_days": 374,
-          "events": 2,
-          "repos": 8,
-          "posts": 2
-        },
-        "error": null
-      },
-      {
-        "name": "quality.expectations",
-        "status": "SUCCEEDED",
-        "duration_ms": 1,
-        "metrics": {
-          "passed": 8,
-          "total": 8,
-          "warnings": 0
-        },
-        "error": null
-      },
-      {
-        "name": "serve.render_site",
-        "status": "SUCCEEDED",
-        "duration_ms": 175,
         "metrics": {
           "pages": 7,
           "tables": 12

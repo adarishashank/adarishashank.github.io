@@ -1,12 +1,12 @@
 {
-  "refreshed_at": "2026-11-27T01:53:45Z",
+  "refreshed_at": "2026-11-27T04:22:49Z",
   "source": "graphql",
   "breakdown": {
     "totalCommitContributions": 33,
     "totalPullRequestContributions": 1,
     "totalPullRequestReviewContributions": 0,
     "totalIssueContributions": 0,
-    "restrictedContributionsCount": 0
+    "restrictedContributionsCount": 197
   },
   "tracked_since": "2026-10-05",
   "profile": {
@@ -15,7 +15,7 @@
     "avatar_url": "https://avatars.githubusercontent.com/u/34904898?v=4",
     "html_url": "https://github.com/adarishashank",
     "created_at": "2017-12-28T04:30:18Z",
-    "bio": null,
+    "bio": "Lead Data Engineer. Azure Databricks, Unity Catalog, real-time streaming. I migrate enterprise data platforms and prove the numbers match.",
     "followers": 1,
     "following": 5,
     "public_repos": 33,
@@ -23,27 +23,27 @@
     "member_years": 8.9
   },
   "totals": {
-    "last_year": 38,
-    "ytd": 34,
-    "last_30": 27,
-    "active_days": 11,
-    "all_time_tracked": 38,
+    "last_year": 235,
+    "ytd": 231,
+    "last_30": 177,
+    "active_days": 28,
+    "all_time_tracked": 235,
     "best_day": {
       "d": "2026-11-08",
-      "c": 12
+      "c": 30
     }
   },
   "streak": {
     "current": 0,
-    "longest": 5,
-    "longest_start": "2026-11-06",
-    "longest_end": "2026-11-10"
+    "longest": 12,
+    "longest_start": "2026-11-05",
+    "longest_end": "2026-11-16"
   },
   "levels": [
     1,
-    2,
     3,
-    4
+    6,
+    13
   ],
   "calendar": [
     {
@@ -280,7 +280,7 @@
     },
     {
       "d": "2026-01-13",
-      "c": 3
+      "c": 5
     },
     {
       "d": "2026-01-14",
@@ -1360,11 +1360,11 @@
     },
     {
       "d": "2026-10-10",
-      "c": 0
+      "c": 3
     },
     {
       "d": "2026-10-11",
-      "c": 0
+      "c": 6
     },
     {
       "d": "2026-10-12",
@@ -1376,7 +1376,7 @@
     },
     {
       "d": "2026-10-14",
-      "c": 0
+      "c": 3
     },
     {
       "d": "2026-10-15",
@@ -1396,15 +1396,15 @@
     },
     {
       "d": "2026-10-19",
-      "c": 0
+      "c": 1
     },
     {
       "d": "2026-10-20",
-      "c": 0
+      "c": 21
     },
     {
       "d": "2026-10-21",
-      "c": 0
+      "c": 11
     },
     {
       "d": "2026-10-22",
@@ -1456,7 +1456,7 @@
     },
     {
       "d": "2026-11-03",
-      "c": 0
+      "c": 5
     },
     {
       "d": "2026-11-04",
@@ -1464,11 +1464,11 @@
     },
     {
       "d": "2026-11-05",
-      "c": 0
+      "c": 5
     },
     {
       "d": "2026-11-06",
-      "c": 2
+      "c": 4
     },
     {
       "d": "2026-11-07",
@@ -1476,39 +1476,39 @@
     },
     {
       "d": "2026-11-08",
-      "c": 12
+      "c": 30
     },
     {
       "d": "2026-11-09",
-      "c": 4
+      "c": 13
     },
     {
       "d": "2026-11-10",
-      "c": 5
+      "c": 15
     },
     {
       "d": "2026-11-11",
-      "c": 0
+      "c": 18
     },
     {
       "d": "2026-11-12",
-      "c": 2
+      "c": 7
     },
     {
       "d": "2026-11-13",
-      "c": 0
+      "c": 12
     },
     {
       "d": "2026-11-14",
-      "c": 0
+      "c": 19
     },
     {
       "d": "2026-11-15",
-      "c": 0
+      "c": 6
     },
     {
       "d": "2026-11-16",
-      "c": 0
+      "c": 14
     },
     {
       "d": "2026-11-17",
@@ -1520,19 +1520,19 @@
     },
     {
       "d": "2026-11-19",
-      "c": 0
+      "c": 3
     },
     {
       "d": "2026-11-20",
-      "c": 0
+      "c": 10
     },
     {
       "d": "2026-11-21",
-      "c": 0
+      "c": 10
     },
     {
       "d": "2026-11-22",
-      "c": 0
+      "c": 4
     },
     {
       "d": "2026-11-23",
@@ -1556,13 +1556,13 @@
     }
   ],
   "weekday": [
-    6,
-    8,
-    4,
-    2,
-    2,
-    3,
-    13
+    30,
+    46,
+    36,
+    15,
+    26,
+    35,
+    47
   ],
   "monthly": [
     {
@@ -1571,7 +1571,7 @@
     },
     {
       "m": "2026-01",
-      "c": 3
+      "c": 5
     },
     {
       "m": "2026-02",
@@ -1607,17 +1607,17 @@
     },
     {
       "m": "2026-10",
-      "c": 4
+      "c": 49
     },
     {
       "m": "2026-11",
-      "c": 27
+      "c": 177
     }
   ],
   "languages": [
     {
       "name": "Python",
-      "repos": 5
+      "repos": 6
     },
     {
       "name": "Java",
@@ -1653,11 +1653,28 @@
       "forks": 0,
       "fork": false,
       "archived": false,
-      "pushed_at": "2026-11-26T01:55:32Z",
+      "pushed_at": "2026-11-27T04:22:40Z",
       "created_at": "2026-10-05T05:25:30Z",
       "url": "https://github.com/adarishashank/adarishashank.github.io",
       "topics": [],
       "homepage": "https://adarishashank.github.io"
+    },
+    {
+      "name": "adarishashank",
+      "description": "Config files for my GitHub profile.",
+      "language": "Python",
+      "stars": 0,
+      "forks": 0,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-11-27T04:19:28Z",
+      "created_at": "2021-04-21T16:34:54Z",
+      "url": "https://github.com/adarishashank/adarishashank",
+      "topics": [
+        "config",
+        "github-config"
+      ],
+      "homepage": "https://github.com/adarishashank"
     },
     {
       "name": "pbi-validator",
@@ -1679,23 +1696,6 @@
         "visual-regression"
       ],
       "homepage": ""
-    },
-    {
-      "name": "adarishashank",
-      "description": "Config files for my GitHub profile.",
-      "language": null,
-      "stars": 0,
-      "forks": 0,
-      "fork": false,
-      "archived": false,
-      "pushed_at": "2026-10-03T20:20:44Z",
-      "created_at": "2021-04-21T16:34:54Z",
-      "url": "https://github.com/adarishashank/adarishashank",
-      "topics": [
-        "config",
-        "github-config"
-      ],
-      "homepage": "https://github.com/adarishashank"
     },
     {
       "name": "Nexa-Application",
@@ -2401,7 +2401,7 @@
       "following": "5",
       "public_repos": "33",
       "stars": "0",
-      "contributions_last_year": "38"
+      "contributions_last_year": "235"
     }
   ]
 }

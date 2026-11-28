@@ -1,11 +1,11 @@
 {
   "source": "graphql",
   "breakdown": {
-    "totalCommitContributions": 33,
-    "totalPullRequestContributions": 1,
+    "totalCommitContributions": 32,
+    "totalPullRequestContributions": 0,
     "totalPullRequestReviewContributions": 0,
     "totalIssueContributions": 0,
-    "restrictedContributionsCount": 197
+    "restrictedContributionsCount": 200
   },
-  "ingested_at": "2026-11-27T04:22:49Z"
+  "ingested_at": "2026-11-28T01:36:44Z"
 }
